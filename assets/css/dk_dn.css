@@ -1,0 +1,15 @@
+.dk_dn {
+    width: 100px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.dk_dn:hover {
+    background-color: rgb(52, 178, 227);
+}

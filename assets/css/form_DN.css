@@ -1,0 +1,52 @@
+.form_DN {
+    width: 600px;
+    height: auto;
+    background-color: rgb(179, 176, 176);
+    border-radius: 3px;
+    margin: auto;
+    display: none;
+}
+
+.form_DN h3 {
+    color: #0078ff;
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.main_DN {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main_DN input {
+    width: 100%;
+    border: gainsboro;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.main_DN a:hover {
+    color: red;
+    transition: 0.3s;
+}
+
+.form_DN button {
+    width: 100%;
+    margin: 20px auto 40px auto;
+    border-radius: 3px;
+    background-color: #0078ff;
+    color: aliceblue;
+    height: 40px;
+    line-height: 30px;
+    border-color: #0078ff;
+}
+
+.form_DN button:hover {
+    background-color: #217be2;
+    cursor: pointer;
+    transition: 0.3s;
+}
