@@ -27,18 +27,11 @@ signupBtn.addEventListener("click", (e) => {
     formContainer.classList.add("active");
 });
 
-
-
-const closeBtn = document.querySelector('.close-btn');
-
-closeBtn.addEventListener('click', () => {
-    formContainer.style.display = 'none';
-});
 formOpenBtn.addEventListener('click', () => {
     formContainer.style.display = 'block';
     formContainer.style.transition = '0.3s';
 });
-closeBtn.addEventListener("click", () => home.classList.remove("show"));
+
 
 function loginNow1() {
     // xử lý đăng nhập ở đây
@@ -62,4 +55,15 @@ function changeLoginButton() {
 
 function showloginform() {
     home.addEventListener("click", () => home.classList.add("show"));
+    close_form();
+}
+
+function close_form() {
+    const closeBtn = document.querySelector('.close-btn');
+
+    closeBtn.addEventListener('click', () => {
+        formContainer.style.display = 'none';
+        home.addEventListener("click", () => home.classList.remove("show"));
+    });
+
 }
