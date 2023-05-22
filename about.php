@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-
+    <link rel="stylesheet" href="assets/css/dk_dn.css">
+    <link rel="stylesheet" href="assets/css/form_DN.css">
+    <link rel="stylesheet" href="./assets/css/login.css">
 </head>
 
 <body>
@@ -43,7 +45,7 @@
 
     <header>
         <!-- Header Start -->
-        <div class="header-area">
+        <div class="header-area home">
             <div class="main-header ">
                 <div class="header-top black-bg d-none d-md-block">
                     <div class="container">
@@ -52,7 +54,12 @@
                                 <div class="header-info-left">
                                     <ul>
                                         <li><img src="assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
-                                        <li><img src="assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
+                                        <li><img src="assets/img/icon/header_icon1.png" alt=""><?php
+                            date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+                            $currentTime = date('l, dS F, Y');
+                            echo $currentTime;
+                            ?></li>
                                     </ul>
                                 </div>
                                 <div class="header-info-right">
@@ -124,6 +131,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="DN_DK">
+                                <button class="dk_dn" id="form-open" onclick="">Login</button>
+                            </div>
                             <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-md-none"></div>
@@ -132,7 +142,70 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Home -->
+            <section class="">
+                <div class="form_container">
+                    <i class="uil uil-times form_close"></i>
+                    <!-- Login From -->
+                    <div class="form login_form">
+                        <form action="#">
+                            <h2>Login</h2>
+                            <button class="close-btn">X</button>
+                            <div class="input_box">
+                                <input type="email" placeholder="Enter your email" required />
+                                <i class="uil uil-envelope-alt email"></i>
+                            </div>
+                            <div class="input_box">
+                                <input type="password" placeholder="Enter your password" required />
+                                <i class="uil uil-lock password"></i>
+                                <i class="uil uil-eye-slash pw_hide"></i>
+                            </div>
+
+                            <div class="option_field">
+                                <span class="checkbox">
+                        <input type="checkbox" id="check" />
+                        <label for="check">Remember me</label>
+                      </span>
+                                <a href="#" class="forgot_pw">Forgot password?</a>
+                            </div>
+
+                            <button class="button" id="loginNow">Login Now</button>
+
+                            <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
+                        </form>
+                    </div>
+
+                    <!-- Signup From -->
+                    <div class="form signup_form">
+                        <form action="#">
+                            <h2>Sign up</h2>
+
+                            <div class="input_box">
+                                <input type="email" placeholder="Enter your email" required />
+                                <i class="uil uil-envelope-alt email"></i>
+                            </div>
+                            <div class="input_box">
+                                <input type="password" placeholder="Create password" required />
+                                <i class="uil uil-lock password"></i>
+                                <i class="uil uil-eye-slash pw_hide"></i>
+                            </div>
+                            <div class="input_box">
+                                <input type="password" placeholder="Confirm password" required />
+                                <i class="uil uil-lock password"></i>
+                                <i class="uil uil-eye-slash pw_hide"></i>
+                            </div>
+
+                            <button class="button">Sign up Now</button>
+
+                            <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
         </div>
+        <script src="./assets/js/login.js"></script>
         <!-- Header End -->
     </header>
 
