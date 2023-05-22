@@ -22,6 +22,13 @@
         elseif($tmp == 'quanLyBaiViet' && $query == 'sua'){
             include('quanlybaiviet/sua.php');
         }
+        if($tmp == 'quanLyVideo' && $query == 'them'){
+            include('quanlyvideo/them.php');
+            include('quanlyvideo/lietke.php');
+        }
+        elseif($tmp == 'quanLyVideo' && $query == 'sua'){
+            include('quanlyvideo/sua.php');
+        }
         elseif($tmp == 'quanLyTaiKhoan' && $query == 'lietke'){
             include('quanLyTaiKhoan/lietke.php');
         }
