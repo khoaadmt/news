@@ -26,14 +26,7 @@ signupBtn.addEventListener("click", (e) => {
     e.preventDefault();
     formContainer.classList.add("active");
 });
-loginBtn2.addEventListener("click", (e) => {
-    e.preventDefault();
-    formContainer.classList.remove("active");
-});
-loginNow.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.location.href = "http://127.0.0.1:5500/aznews-master/about1.html";
-});
+
 
 
 const closeBtn = document.querySelector('.close-btn');
@@ -46,3 +39,27 @@ formOpenBtn.addEventListener('click', () => {
     formContainer.style.transition = '0.3s';
 });
 closeBtn.addEventListener("click", () => home.classList.remove("show"));
+
+function loginNow1() {
+    // xử lý đăng nhập ở đây
+
+    // sau khi đăng nhập thành công, gọi hàm để tải lại trang web và ẩn nút login
+    location.reload();
+    changeLoginButton();
+    home.addEventListener("click", () => home.classList.remove("show"));
+}
+
+// Hàm ẩn form ddawng
+function hideLoginForm() {
+    var loginForm = document.getElementsByClassName("form_container");
+    loginForm.style.display = "none"; // Thay đổi thuộc tính display từ block thành none
+}
+
+function changeLoginButton() {
+    formOpenBtn.innerHTML = "<i class='fa fa-user' id='dan'></i>";
+
+}
+
+function showloginform() {
+    home.addEventListener("click", () => home.classList.add("show"));
+}
