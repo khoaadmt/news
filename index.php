@@ -857,28 +857,29 @@
         </div>
         <!-- End Weekly-News -->
         <!-- Start Youtube -->
+        <?php
+    function getVideosFromDatabase() {
+        $mysqli = new mysqli("localhost", "root", "", "newsdb");
+        $sql_query = "SELECT * FROM tbl_video ORDER BY id_video";
+        $query_lietke_video = mysqli_query($mysqli, $sql_query);
+        
+        return $query_lietke_video;
+    }
+    ?>
         <div class="youtube-area video-padding">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="video-items-active">
+                            <?php
+                        $query_lietke_video =  getVideosFromDatabase();
+                        while($row = mysqli_fetch_array($query_lietke_video)){
+                            ?>
                             <div class="video-items text-center">
-                                <iframe src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe src="<?php echo $row['link'];?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
-                            <div class="video-items text-center">
-                                <iframe src="https://www.youtube.com/embed/rIz00N40bag" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <div class="video-items text-center">
-                                <iframe src="https://www.youtube.com/embed/CONfhrASy44" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-                            </div>
-                            <div class="video-items text-center">
-                                <iframe src="https://www.youtube.com/embed/lq6fL2ROWf8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-                            </div>
-                            <div class="video-items text-center">
-                                <iframe src="https://www.youtube.com/embed/0VxlQlacWV4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
+                        <?php }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -887,46 +888,28 @@
                         <div class="col-lg-6">
                             <div class="video-caption">
                                 <div class="top-caption">
-                                    <span class="color1">Politics</span>
+                                    <span class="color1">Danh mục</span>
                                 </div>
                                 <div class="bottom-caption">
-                                    <h2>Welcome To The Best Model Winner Contest At Look of the year</h2>
-                                    <p>khoa1</p>
+                                    <h2>Tiêu đề video</h2>
+                                    <p>Nội dung tóm tắt</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="testmonial-nav text-center">
-                                <div class="single-video">
-                                    <iframe src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <?php
+                                $query_lietke_video =  getVideosFromDatabase();
+                                while($row = mysqli_fetch_array($query_lietke_video)){
+                            ?>
+                             <div class="single-video">
+                                    <iframe src="<?php echo $row['link'];?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     <div class="video-intro">
-                                        <h4>Welcotme To The Best Model Winner Contest</h4>
+                                        <h4><?php echo $row['tieuDeVideo'];?></h4>
                                     </div>
                                 </div>
-                                <div class="single-video">
-                                    <iframe src="https://www.youtube.com/embed/rIz00N40bag" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    <div class="video-intro">
-                                        <h4>Welcotme To The Best Model Winner Contest</h4>
-                                    </div>
-                                </div>
-                                <div class="single-video">
-                                    <iframe src="https://www.youtube.com/embed/CONfhrASy44" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    <div class="video-intro">
-                                        <h4>Welcotme To The Best Model Winner Contest</h4>
-                                    </div>
-                                </div>
-                                <div class="single-video">
-                                    <iframe src="https://www.youtube.com/embed/lq6fL2ROWf8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    <div class="video-intro">
-                                        <h4>Welcotme To The Best Model Winner Contest</h4>
-                                    </div>
-                                </div>
-                                <div class="single-video">
-                                    <iframe src="https://www.youtube.com/embed/0VxlQlacWV4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    <div class="video-intro">
-                                        <h4>Welcotme To The Best Model Winner Contest</h4>
-                                    </div>
-                                </div>
+                            <?php }
+                            ?>
                             </div>
                         </div>
                     </div>

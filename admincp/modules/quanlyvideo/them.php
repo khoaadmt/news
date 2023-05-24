@@ -3,7 +3,9 @@
     <table border="1px">
     <tr>
         <td>Tiêu đề video</td>
-        <td><input type="text" name="tieuDeVideo"></td>
+        <td>
+            <textarea name="tieuDeVideo"  rows="5"></textarea>
+        </td>
     </tr>
     <tr>
         <td>Danh mục</td>
