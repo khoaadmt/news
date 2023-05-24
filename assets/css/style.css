@@ -3682,8 +3682,24 @@ hr {
     width: 100%
 }
 
+.about-img p {
+    margin-top: 0px;
+    text-align: center;
+    font-size: 16px;
+}
+
 .about-area .about-right .about-prea p {
     font-size: 15px
+}
+
+.about-prea {
+    margin-top: 20px;
+}
+
+.about-prea>article {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
 }
 
 .social-share ul li {
@@ -6704,4 +6720,62 @@ del {
 
 .switch-wrap {
     margin-bottom: 10px
+}
+
+.baiviet_lq {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.baiviet {
+    display: flex;
+    width: 30%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(232, 232, 235);
+    text-align: center;
+    border-radius: 3px;
+}
+
+.baiviet:hover {
+    cursor: pointer;
+    border: 2px solid rgb(194, 197, 199);
+    transition: 0.3s ease-in-out;
+}
+
+.baiviet img {
+    width: 100%;
+    image-resolution: 100%;
+}
+
+.baiviet>span>a {
+    color: black;
+    font-family: "Roboto", sans-serif;
+}
+
+.baiviet>span>a:hover {
+    color: #1696e7;
+}
+
+.like-container {
+    display: flex;
+    font-size: 1.2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.like-count {
+    margin-right: 1rem;
+}
+
+.like-icon {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.like-icon.active {
+    color: red;
 }
