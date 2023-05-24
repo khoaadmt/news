@@ -11,8 +11,9 @@ include('../../config/config.php');
         header('location:../../index.php?%20action=quanLyVideo&query=them');
     }
     elseif(isset($_POST['suaVideo'])){
-        $sql_query = "UPDATE tbl_danhmuc SET tenDanhMuc = '".$tenDanhMuc."',thuTu= '".$thuTu."'
-                                         WHERE id_danhMuc = '$_GET[id_danhMuc]' ";
+        $sql_query = "UPDATE tbl_video SET tieuDeVideo = '".$tieuDeVideo."',danhMuc= '".$danhMuc."',
+                                            link= '".$link."',noiDungTomTat= '".$noiDungTomTat."'
+                                         WHERE id_video = '$_GET[id_video]' ";
         mysqli_query($mysqli,$sql_query);
         header('location:../../index.php?%20action=quanLyVideo&query=them');
     }

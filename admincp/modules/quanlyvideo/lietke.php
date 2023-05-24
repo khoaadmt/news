@@ -18,7 +18,9 @@
                  $i++;
             ?>
             <tr>
-                <td><?php echo$row['tieuDeVideo'] ?></td>
+                <td>
+                <textarearows="5"><?php echo$row['tieuDeVideo'] ?></textarea>
+                </td>
                 <td><?php echo$row['danhMuc'] ?></td>
                 <td><textarea rows="5"><?php echo $row['noiDungTomTat']?></textarea></td>
                 <td><?php echo$row['link'] ?></td>
