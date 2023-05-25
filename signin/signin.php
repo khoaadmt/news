@@ -1,112 +1,126 @@
+<?php
+	session_start();
+	include('../admincp/config/config.php');  
+	if(isset($_POST['dangnhap'])){  
+        $taikhoan = $_POST['Email'];
+		$matkhau = $_POST['Password'];
+		$sql = "SELECT * FROM tbl_admin WHERE tbl_admin.username='".$taikhoan."' AND tbl_admin.password='".$matkhau."'  LIMIT 1";
+		$row = mysqli_query($mysqli,$sql); 
+		$count = mysqli_num_rows($row);
+		if($count>0){
+			$row_data = mysqli_fetch_array($row);
+			$_SESSION['dangnhap'] = $row_data['username'];
+			$_SESSION['email'] = $row_data['username'];
+            $_SESSION['id_khachhang']= $row_data['id_admin'];		
+			header("Location: ../index.php");
+		}
+        else{
+			$message = "Tài khoản mật khẩu không đúng";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+	}
+    
+    if(isset($_POST['dangky'])){  
+        $taikhoan = $_POST['EmailSignUp'];
+		$matkhau = $_POST['PasswordSignUp'];
+        $nhaplaimatkhau = $_POST['ConfirmPasswordSignUp'];
+        
+        if ($matkhau == $nhaplaimatkhau) {
+            $sql_dangky = "INSERT INTO tbl_admin(username, password) VALUES ('".$taikhoan."', '".$matkhau."')";
+            $query_dangky=mysqli_query($mysqli,$sql_dangky);
+            if($query_dangky){
+                echo '<script>alert("Đăng ký thành công"); window.location.href = "signin.php";</script>';
+            } else {
+                echo '<script>alert("Tên tài khoản đã có người đăng ký")</script>';
+            }
+        } else {
+            echo "<script type='text/javascript'>alert('Nhập lại mật khẩu sai');</script>";
+        }
+	} 
+?>
+
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./sign_in.css" />
-        <title>FORM</title>
-    </head>
-    <body>
-        <div class="main">
-            <form action="" method="POST" class="form" id="form-1">
-                <h3 class="heading">Thành viên đăng ký</h3>
-                <p class="desc">Cùng nhau mua đồng hồ tại WATCH LUXURY ❤️</p>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Weekly Coding Challenge #1 -  Double slider Sign in/up Form - Desktop Only</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="style.css">
 
-                <div class="spacer"></div>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="" method="POST">
+			<h1>Create Account</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your email for registration</span>
+			<input type="email" placeholder="Email" id="EmailSignUp" name="EmailSignUp" required/>
+			<input type="password" placeholder="Password" id="PasswordSignUp" name="PasswordSignUp" required/>
+            <input type="password" placeholder="Confirm Password" id="ConfirmPasswordSignUp" name="ConfirmPasswordSignUp" required/>
+			<input type="submit" id="dangky" name="dangky"/>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="" method="POST">
+			<h1>Sign in</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your account</span>
+			<input type="email" placeholder="Email" id="Email" name="Email" required/>
+			<input type="password" placeholder="Password" id="Password" name="Password" required/>
+			
+			<a href="#">Forgot your password?</a>
+            <input type="submit" id="dangnhap" name="dangnhap"/>
+			<!-- <button>Sign In</button> -->
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
 
-                <div class="form-group">
-                    <label for="fullname" class="form-label">Tên đầy đủ</label>
-                    <input id="fullname" name="hovaten" type="text" placeholder="VD: Hoan Tran" class="form-control" />
-                    <span class="form-message"></span>
-                </div>
-                <div class="form-group">
-                    <label for="fullname" class="form-label">Tên tài khoản</label>
-                    <input id="fullname" name="taikhoan" type="text" placeholder="VD: Hoan Tran" class="form-control" />
-                    <span class="form-message"></span>
-                </div>
+<footer>
+	<p>
+		Created with <i class="fa fa-heart"></i> by
+		<a target="_blank" href="https://florin-pop.com">Florin Pop</a>
+		- Read how I created this and how you can join the challenge
+		<a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
+	</p>
+</footer>
+<!-- partial -->
+  <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
 
-                <div class="form-group">
-                    <label for="email" class="form-label">Email</label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="text"
-                        placeholder="VD: email@domain.com"
-                        class="form-control"
-                    />
-                    <span class="form-message"></span>
-                </div>
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
 
-                <div class="form-group">
-                    <label for="password" class="form-label">Mật khẩu</label>
-                    <input
-                        id="password"
-                        name="matkhau"
-                        type="password"
-                        placeholder="Nhập mật khẩu"
-                        class="form-control"
-                    />
-                    <span class="form-message"></span>
-                </div>
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+  </script>
 
-                <div class="form-group">
-                    <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
-                    <input
-                        id="password_confirmation"
-                        name="rematkhau"
-                        placeholder="Nhập lại mật khẩu"
-                        type="password"
-                        class="form-control"
-                    />
-                    <span class="form-message"></span>
-                </div>                      
-                <div class="form-group">
-                    <label for="fullname" class="form-label">Số điện thoại</label>
-                    <input id="fullname" name="dienthoai" type="text" placeholder="Số điện thoại" class="form-control" />
-                    <span class="form-message"></span>
-                </div>
-                <div class="form-group">
-                    <label for="fullname" class="form-label">Địa chỉ</label>
-                    <input id="fullname" name="diachi" type="text" placeholder="Địa chỉ" class="form-control" />
-                <span class="form-message"></span>
-                <input class="form-submit" type="submit" name="dangky" value="Đăng ký">
-                <!-- <button class="form-submit" name="dangky" >Đăng ký</button> -->
-                <a style="margin-top:12px; font-size:14px;" href="../index.php?quanly=dangnhap">Đăng nhập nếu có tài khoản</a>
-            </form>
-            <div>
-                <?php
-                    session_start();
-                    include('../admincp/config/connect.php');   
-                    if(isset($_POST['dangky'])) {
-                        $email = $_POST['email'];
-                        $password= $_POST['password'];
-                        $confirmPassword = $_POST['confirmPassword'];
-                        if ($email || $password || $confirmPassword)
-                        {
-                            if($password!=$confirmPassword){
-                                echo "mat khau chua trung"; 
-                            } else {
-                                $sql_dangky = "INSERT INTO tbl_admin(email, password) VALUES ('".$email."', '".$password.")";
-                                $query_dangky=mysqli_query($connect,$sql_dangky);
-                                if($query_dangky){
-                                    echo '<script>alert("Đăng ký thành công")</script>';
-                                    $_SESSION['dangky'] = $email;
-                                    // $_SESSION['email'] = $email;
-                                    // $_SESSION['id_khachhang'] = mysqli_insert_id($connect);
-                                    
-                                } else {
-                                    echo '<script>alert("Tên tài khoản đã có người đăng ký")</script>';
-                                }
-                            }
-                        }
-                        else {
-                            echo "Vui lòng nhập đầy đủ thông tin.";
-                        }
-                    }
-                
-                ?>
-            </div>
-        </div>
-    </body>
+</body>
 </html>

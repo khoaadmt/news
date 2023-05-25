@@ -1,3 +1,11 @@
+<?php
+    session_start();
+	if(isset($_GET['dangxuat'])&&$_GET['dangxuat']==1){
+        unset($_SESSION['dangnhap']);
+        echo '<script>alert("Đăng xuất thành công"); window.location.href = "../news/index.php";</script>';
+	}
+?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -129,8 +137,21 @@
                                 </div>
                             </div>
                             <div class="DN_DK">
-                                <button class="dk_dn" id="form-open" onclick="showloginform()"></i>Login</button>
+                                <?php
+                                
+                                if (!isset($_SESSION['dangnhap'])) {
+                                    ?>
+                                    <a href="./signin/signin.php" class="dk_dn">Đăng ký | Đăng nhập</a>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <a href="../news/index.php?dangxuat=1" class="dk_dn">Đăng xuất : <?php if(isset($_SESSION['dangnhap'])) { echo $_SESSION['dangnhap']; } ?></a>
+                                    <?php
+                                }
+                                ?>
                             </div>
+
+
                             <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-md-none"></div>
