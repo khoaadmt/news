@@ -435,13 +435,43 @@
 
             </div>
 
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+            $(document).ready(function() {
+                $('form').submit(function(e) {
+                e.preventDefault(); // Ngăn chặn gửi form mặc định
+
+                var formData = $(this).serialize(); // Lấy dữ liệu form
+
+                $.ajax({
+                    url: 'contact_process.php',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                    // Xử lý phản hồi từ server
+                    if (response.success) {
+                        // Hiển thị thông báo gửi mail thành công
+                        alert('Gửi mail thành công!');
+                    } else {
+                        // Hiển thị thông báo lỗi gửi mail
+                        alert('Đã xảy ra lỗi khi gửi mail.');
+                    }
+                    },
+                    error: function() {
+                    // Xử lý khi có lỗi trong quá trình gửi Ajax
+                    alert('Đã xảy ra lỗi.');
+                    }
+                });
+                });
+            });
+            </script>
 
             <div class="row">
                 <div class="col-12">
-                    <h2 class="contact-title">Get in Touch</h2>
+                    <h2 class="contact-title">Liên hệ với chúng tôi</h2>
                 </div>
                 <div class="col-lg-8">
-                    <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                    <form class="form-contact contact_form" action="#" method="POST"  novalidate="novalidate">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
@@ -465,7 +495,7 @@
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <button type="submit" class="button button-contactForm boxed-btn">Send</button>
+                            <input type="submit" class="button  boxed-btn" name="submit" value="Send">
                         </div>
                     </form>
                 </div>
@@ -473,22 +503,20 @@
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-home"></i></span>
                         <div class="media-body">
-                            <h3>Buttonwood, California.</h3>
-                            <p>Rosemead, CA 91770</p>
+                            <h3>Trường Đại học Công Nghiệp Hà Nội</h3>
+                            <p>số 23, Minh Khai, Từ Liêm</p>
                         </div>
                     </div>
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                         <div class="media-body">
-                            <h3>+1 253 565 2365</h3>
-                            <p>Mon to Fri 9am to 6pm</p>
+                            <h3>024 3765 5121</h3>
                         </div>
                     </div>
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-email"></i></span>
                         <div class="media-body">
-                            <h3>support@colorlib.com</h3>
-                            <p>Send us your query anytime!</p>
+                            <h3>HaUI@gmail.com</h3>
                         </div>
                     </div>
                 </div>
