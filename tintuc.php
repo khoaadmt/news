@@ -221,22 +221,6 @@
             <div class="container">
                 <!-- Hot Aimated News Tittle-->
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="trending-tittle">
-                            <strong>Trending now</strong>
-                            <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
-                            <div class="trending-animated">
-                                <ul id="js-news" class="js-hidden">
-                                    <li class="news-item">Bangladesh dolor sit amet, consectetur adipisicing elit.</li>
-                                    <li class="news-item">Spondon IT sit amet, consectetur.......</li>
-                                    <li class="news-item">Rem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-lg-8">
                         <!-- Trending Tittle -->
                         <div class="about-right mb-90">
@@ -245,6 +229,8 @@
                                 <p class="author">Tác giả: Nguyễn Dẫn</p>
 		                        <p class="date">Ngày đăng: 24 tháng 5 năm 2023</p>
                                 <h4>Mô tả bài viết ở đây</h4>
+				<p>click vào đây để nghe!</p>
+                                <audio src="" volume controls ></audio>
                             </div>
                             <div class="about-img" >
                                 <img src="assets/img/trending/trending_top.jpg" alt="Ảnh ở đây">
