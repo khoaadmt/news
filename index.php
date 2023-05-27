@@ -39,20 +39,6 @@
 </head>
 
 <body>
-
-    <!-- Preloader Start -->
-    <!-- <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/logo.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Preloader Start -->
-
     <header>
         <!-- Header Start -->
         <div class="header-area home">
@@ -62,7 +48,7 @@
                         <div class="col-xl-12">
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left">
-                                    <ul>
+                                          <ul>
                                         <li><img src="assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
                                         <li><img src="assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
                                     </ul>
@@ -145,7 +131,7 @@
                                     <?php
                                 } else {
                                     ?>
-                                    <a href="../news/index.php?dangxuat=1" class="dk_dn">Đăng xuất : <?php if(isset($_SESSION['dangnhap'])) { echo $_SESSION['dangnhap']; } ?></a>
+                                    <a href="../news/index.php?dangxuat=1" class="dk_dn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                                     <?php
                                 }
                                 ?>
