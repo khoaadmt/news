@@ -12,7 +12,7 @@
 			$_SESSION['dangnhap'] = $row_data['username'];
 			$_SESSION['email'] = $row_data['username'];
             $_SESSION['id_khachhang']= $row_data['id_admin'];		
-			header("Location: ../index.php");
+			header("Location: ../index1.php");
 		}
         else{
 			$message = "Tài khoản mật khẩu không đúng";
