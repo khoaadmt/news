@@ -43,7 +43,7 @@
         <?php
             
             include("admincp/config/config.php");
-            include("pages/menu.php");
+            // include("pages/menu.php");
             include("pages/header.php");
             include("pages/main.php"); 
             // include("pages/show_product.php");
