@@ -52,8 +52,8 @@
                                 <div class="main-menu d-none d-md-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="index.php">Trang chủ</a></li>
-                                            <li><a href="categori.php">Danh mục</a></li>
+                                            <li><a href="index.php?action=home">Trang chủ</a></li>
+                                            <li><a href="index.php?action=category">Danh mục</a></li>
                                         </ul>
                                     </nav>
                                 </div>
