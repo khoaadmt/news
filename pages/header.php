@@ -52,19 +52,8 @@
                                 <div class="main-menu d-none d-md-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="index.php">Home</a></li>
-                                            <li><a href="categori.php">Category</a></li>
-                                            <li><a href="about.php">About</a></li>
-                                            <li><a href="latest_news.php">Latest News</a></li>
-                                            <li><a href="contact.php">Contact</a></li>
-                                            <li><a href="#">Pages</a>
-                                                <ul class="submenu">
-                                                    <li><a href="elements.php">Element</a></li>
-                                                    <li><a href="blog.php">Blog</a></li>
-                                                    <li><a href="single-blog.php">Blog Details</a></li>
-                                                    <li><a href="details.php">Categori Details</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="index.php">Trang chủ</a></li>
+                                            <li><a href="categori.php">Danh mục</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -90,12 +79,11 @@
                                     <?php
                                 } else {
                                     ?>
-                                    <a href="../news/index1.php?dangxuat=1" class="dk_dn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                                    <a href="../news/index.php?dangxuat=1" class="dk_dn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                                     <?php
                                 }
                                 ?>
                             </div>
-
                             <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-md-none"></div>
