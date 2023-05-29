@@ -41,6 +41,7 @@
 <body>
 <div class="wrapper">
         <?php
+            $id_account = $_GET['id_admin'];
             
             include("admincp/config/config.php");
             // include("pages/menu.php");
