@@ -23,6 +23,12 @@
         </td>
     </tr>
     <tr>
+        <td>Link video</td>
+        <td>
+            <textarea rows="5" name="linkVideo" ><?php echo $row['video']?></textarea>
+        </td>
+    </tr>
+    <tr>
         <td>Tóm tắt</td>
         <td>
             <textarea rows="5" name="tomTat" ><?php echo $row['tomTat']?></textarea>
@@ -42,17 +48,13 @@
                 while($row2 = mysqli_fetch_array($query_lietke_danhmuc)){      
                             
                         ?>
-                        <option value="<?php echo $row2['tenDanhMuc']?>" <?php if($row2['tenDanhMuc'] == $row['danhMuc']) echo 'selected'; ?>> <?php echo $row2['tenDanhMuc']?> </option>
+                        <option value="<?php echo $row2['id_danhMuc']?>" <?php if($row2['id_danhMuc'] == $row['id_danhmuc']) echo 'selected'; ?>> <?php echo $row2['tenDanhMuc']?> </option>
                     <?php 
                         }
                     ?>
             </select>
         </td>
        
-    </tr>
-    <tr>
-        <td>Tác giả</td>
-        <td><input type="text" name="tacGia" value="<?php echo $row['tacGia']?>"></td>
     </tr>
     <tr>
         <td>

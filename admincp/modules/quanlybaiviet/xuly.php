@@ -3,8 +3,8 @@ include('../../config/config.php');
         $tieuDeBaiViet = $_POST['tieuDeBaiViet'];
         $tomTat = $_POST['tomTat'];
         $noiDung = $_POST['noiDung'];
-        $tacGia = $_POST['tacGia'];
         $danhMuc = $_POST['danhMuc'];
+        $link  = $_POST['linkVideo'];
 
         $hinhAnh = $_FILES['hinhAnh']['name'];
         $hinhAnh_tmp = $_FILES['hinhAnh']['tmp_name'];
@@ -18,8 +18,8 @@ include('../../config/config.php');
         $tacGia = mysqli_real_escape_string($mysqli, $tacGia);
         $danhMuc = mysqli_real_escape_string($mysqli, $danhMuc);
 
-        $sql_query = "INSERT INTO tbl_baiviet(tieuDeBaiViet,hinhAnh,tomTat,noiDung,danhMuc,tacGia,ngayTao) 
-        VALUE('".$tieuDeBaiViet."','".$hinhAnh."','".$tomTat."','".$noiDung."','".$danhMuc."','".$tacGia."',CURRENT_DATE())";
+        $sql_query = "INSERT INTO tbl_baiviet(tieuDeBaiViet,hinhAnh,video,tomTat,noiDung,id_danhMuc,nguoiTao,ngayTao) 
+        VALUE('".$tieuDeBaiViet."','".$hinhAnh."','".$link."','".$tomTat."','".$noiDung."','".$danhMuc."','1',CURRENT_DATE())";
         mysqli_query($mysqli,$sql_query);
         move_uploaded_file($hinhAnh_tmp,'uploads/'.$hinhAnh);
         header('location:../../index.php?%20action=quanLyBaiViet&query=them');
@@ -27,13 +27,15 @@ include('../../config/config.php');
     elseif(isset($_POST['suaBaiViet'])){
         if(isset($_POST['hinhAnh'])){
             $sql_query = "UPDATE tbl_baiViet SET tieuDeBaiViet = '".$tieuDeBaiViet."',hinhAnh = '".$hinhAnh."',
-            tomTat= '".$tomTat."',noiDung = '".$noiDung."',danhMuc ='".$danhMuc."',
-            tacGia ='".$tacGia."'
-            WHERE id_baiViet = '$_GET[id_danhMuc]' ";
+            video = '".$link."',
+            tomTat= '".$tomTat."',noiDung = '".$noiDung."',id_danhmuc ='".$danhMuc."',
+            tacGia ='1'
+            WHERE id_baiViet = '$_GET[id_baiViet]' ";
         }else{
             $sql_query = "UPDATE tbl_baiViet SET tieuDeBaiViet = '".$tieuDeBaiViet."',
-            tomTat= '".$tomTat."',noiDung = '".$noiDung."',danhMuc ='".$danhMuc."',
-            tacGia ='".$tacGia."'
+            video = '".$link."',
+            tomTat= '".$tomTat."',noiDung = '".$noiDung."',id_danhmuc ='".$danhMuc."',
+            nguoiTao ='1'
             WHERE id_baiViet = '$_GET[id_baiViet]' ";
         }
       

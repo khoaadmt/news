@@ -15,6 +15,10 @@
         <td><input type="file" name="hinhAnh"></td>
     </tr>
     <tr>
+        <td>Link video</td>
+        <td> <textarea rows="5" name="linkVideo"></textarea></td>
+    </tr>
+    <tr>
         <td>Tóm tắt</td>
         <td>
             <textarea rows="5" name="tomTat"></textarea>
@@ -35,16 +39,12 @@
             while($row = mysqli_fetch_array($query_lietke_danhmuc)){      
                           
                     ?>
-                    <option value="<?php echo $row['tenDanhMuc']?>"><?php echo $row['tenDanhMuc']?></option>
+                    <option value="<?php echo $row['id_danhMuc']?>"><?php echo $row['tenDanhMuc']?></option>
                 <?php 
                      }
                 ?>
         </select>
         </td>
-    </tr>
-    <tr>
-        <td>Tác giả</td>
-        <td><input type="text" name="tacGia"></td>
     </tr>
     <tr>
         <td>
