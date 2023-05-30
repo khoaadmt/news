@@ -2,7 +2,7 @@
     session_start();
 	if(isset($_GET['dangxuat'])&&$_GET['dangxuat']==1){
         unset($_SESSION['dangnhap']);
-        echo '<script>alert("Đăng xuất thành công"); window.location.href = "../news/index.php";</script>';
+        header("Location:index.php");
 	}
 ?>
 
@@ -43,7 +43,7 @@
         <?php
             $id_account = $_GET['id_admin'];
             
-            include("admincp/config/config.php");
+            include("./admincp/config/config.php");
             // include("pages/menu.php");
             include("pages/header.php");
             include("pages/main.php"); 

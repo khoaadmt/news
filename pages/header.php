@@ -82,7 +82,7 @@
                                     <?php
                                 } else {
                                     ?>
-                                    <a href="../news/index.php?dangxuat=1" class="dk_dn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                                    <a href="../index.php?dangxuat=1" class="dk_dn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                                     <?php
                                 }
                                 ?>

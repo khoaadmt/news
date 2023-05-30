@@ -1,6 +1,6 @@
 <?php
   session_start();
-	include('../admincp/config/connect.php');
+	include('./admincp/config.php');//../admincp/config/connect.php
 	if(isset($_POST['dangnhap'])){
 		$taikhoan = $_POST['taikhoan'];
 		$matkhau = md5($_POST['password']);
