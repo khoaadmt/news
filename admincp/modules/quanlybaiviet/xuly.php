@@ -8,7 +8,9 @@ include('../../config/config.php');
 
         $hinhAnh = $_FILES['hinhAnh']['name'];
         $hinhAnh_tmp = $_FILES['hinhAnh']['tmp_name'];
-        $hinhAnh = time().'_'.$hinhAnh;
+        if($hinhAnh != ''){
+            $hinhAnh = time().'_'.$hinhAnh;
+        }
 
     if(isset($_POST['themBaiViet'])){
         $tieuDeBaiViet = mysqli_real_escape_string($mysqli, $tieuDeBaiViet);
