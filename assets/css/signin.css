@@ -1,0 +1,32 @@
+#dangnhap:hover {
+    cursor: pointer;
+    background-color: rgb(219, 221, 221);
+    transition: 0.3s ease-in;
+}
+
+#Password:hover {
+    background-color: rgb(219, 221, 221);
+    transition: 0.3s ease-in;
+}
+
+#Email:hover {
+    background-color: rgb(219, 221, 221);
+    transition: 0.3s ease-in;
+}
+
+a:hover {
+    color: rgb(76, 76, 240);
+    transition: 0.3s ease-in;
+}
+
+#signUp:hover {
+    cursor: pointer;
+    background-color: rgb(233, 56, 86);
+    transition: 0.3s ease-in;
+}
+
+#signIn:hover {
+    cursor: pointer;
+    background-color: rgb(247, 63, 22);
+    transition: 0.3s ease-in;
+}

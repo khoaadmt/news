@@ -12,8 +12,12 @@
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
-                                        <p>Suscipit mauris pede for con sectetuer sodales adipisci for cursus fames lectus tempor da blandit gravida sodales Suscipit mauris pede for con sectetuer sodales adipisci for cursus fames lectus tempor da blandit
-                                            gravida sodales Suscipit mauris pede for sectetuer.</p>
+                                        <p>Tạp chí điện tử Tri thức trực tuyến<br>
+                                            Cơ quan chủ quản: Hội Xuất bản Việt Nam<br>
+                                            Giấy phép báo chí: số 75/GP-BTTTT do Bộ Thông tin và Truyền thông cấp ngày 26/02/2020<br>
+                                            Phó tổng biên tập phụ trách: Lâm Quang Hiếu<br>
+                                            © Toàn bộ bản quyền thuộc Tri thức trực tuyến<br>
+                                        </p>
                                     </div>
                                 </div>
                                 <!-- social -->
@@ -28,13 +32,46 @@
                     <div class="col-xl-3 col-lg-3 col-md-4  col-sm-6">
                         <div class="single-footer-caption mt-60">
                             <div class="footer-tittle">
-                                <h4>Newsletter</h4>
-                                <p>Heaven fruitful doesn't over les idays appear creeping</p>
+                                <h4>Đăng ký nhận tin mới</h4>
+                                <p>Bạn sẽ nhận được thông báo khi có tin mới nhất !</p>
                                 <!-- Form -->
+
+           
                                 <div class="footer-form">
+            
                                     <div id="mc_embed_signup">
-                                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative mail_part">
-                                            <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = ' Email Address '">
+                                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                        <script>
+                                        $(document).ready(function() {
+                                            $('form').submit(function(e) {
+                                            e.preventDefault(); // Ngăn chặn gửi form mặc định
+
+                                            var formData = $(this).serialize(); // Lấy dữ liệu form
+
+                                            $.ajax({
+                                                url: '../main/lienhe/lienhe.php',
+                                                type: 'POST',
+                                                data: formData,
+                                                success: function(response) {
+                                                // Xử lý phản hồi từ server
+                                                if (response.success) {
+                                                    // Hiển thị thông báo gửi mail thành công
+                                                    alert('Đăng ký thành công!');
+                                                } else {
+                                                    // Hiển thị thông báo lỗi gửi mail
+                                                    alert('Đã xảy ra lỗi khi đăng ký.');
+                                                }
+                                                },
+                                                error: function() {
+                                                // Xử lý khi có lỗi trong quá trình gửi Ajax
+                                                alert('Đã xảy ra lỗi.');
+                                                }
+                                                 });
+                                            });
+                                        });
+                                        </script>
+                                        <form target="_blank" action="#">
+                                            <input type="email" name="gmail" id="newsletter-form-email" placeholder="Gmail" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Gmail'">
                                             <div class="form-icon">
                                                 <button type="submit" name="submit" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/logo/form-iocn.png" alt=""></button>
                                             </div>
@@ -85,21 +122,16 @@
                         <div class="col-lg-6">
                             <div class="footer-copy-right">
                                 <p>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>
-                                        document.write(new Date().getFullYear());
-                                    </script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                   Trường Đại học Công Nghiệp Hà Nội - Bộ Công Thương
                                 </p>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="footer-menu f-right">
                                 <ul>
-                                    <li><a href="#">Terms of use</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">Điều khoản</a></li>
+                                    <li><a href="#">Chính sách bảo mật</a></li>
+                                    <li><a href="#">Liên hệ</a></li>
                                 </ul>
                             </div>
                         </div>

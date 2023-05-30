@@ -17,8 +17,10 @@ if (isset($_GET['search'])) {
                                 <div class="header-info-left">
                                           <ul>
                                         <li><img src="assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
-                                        <li><img src="assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
-                                    </ul>
+                                        <li><img src="assets/img/icon/header_icon1.png" alt=""><?php
+                                                                                                    $date = date("d/m/Y");
+                                                                                                    echo $date;?></li>
+                                         </ul>
                                 </div>
                                 <div class="header-info-right">
                                     <ul class="header-social">
@@ -61,7 +63,12 @@ if (isset($_GET['search'])) {
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="index.php?action=home">Trang chủ</a></li>
+<<<<<<< HEAD
                                             <li><a href="index.php?action=category&category_id=0&current_page=1&searching=">Danh mục</a></li>
+=======
+                                            <li><a href="index.php?action=category">Danh mục</a></li>
+                                            <li><a href="index.php?action=contact">Liên hệ</a></li>
+>>>>>>> 00859cf86c6461ee2475a4052d34d0be933c1f68
                                         </ul>
                                     </nav>
                                 </div>
@@ -86,7 +93,7 @@ if (isset($_GET['search'])) {
                                     <?php
                                 } else {
                                     ?>
-                                    <a href="../news/index.php?dangxuat=1" class="dk_dn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                                    <a href="../index.php?dangxuat=1" class="dk_dn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                                     <?php
                                 }
                                 ?>

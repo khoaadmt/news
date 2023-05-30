@@ -45,55 +45,55 @@
   <meta charset="UTF-8">
   <title>CodePen - Weekly Coding Challenge #1 -  Double slider Sign in/up Form - Desktop Only</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="style.css">
-
+	<link rel="stylesheet" href="../assets/css/signin.css">
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
+<h2>Đăng Nhập/Đăng Ký</h2>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
 		<form action="" method="POST">
-			<h1>Create Account</h1>
+			<h1>Tạo tài khoản</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 			</div>
-			<span>or use your email for registration</span>
+			<span>Hoặc sử dụng email của bạn</span>
 			<input type="email" placeholder="Email" id="EmailSignUp" name="EmailSignUp" required/>
 			<input type="password" placeholder="Password" id="PasswordSignUp" name="PasswordSignUp" required/>
             <input type="password" placeholder="Confirm Password" id="ConfirmPasswordSignUp" name="ConfirmPasswordSignUp" required/>
-			<input type="submit" id="dangky" name="dangky"/>
+			<input type="submit" id="dangky" name="dangky" />
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
 		<form action="" method="POST">
-			<h1>Sign in</h1>
+			<h1>Đăng Nhập</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 			</div>
-			<span>or use your account</span>
+			<span>Hoặc sử dụng tài khoản của bạn</span>
 			<input type="email" placeholder="Email" id="Email" name="Email" required/>
 			<input type="password" placeholder="Password" id="Password" name="Password" required/>
 			
-			<a href="#">Forgot your password?</a>
-            <input type="submit" id="dangnhap" name="dangnhap"/>
+			<a href="#">Bạn quên mật khẩu ?</a>
+            <input type="submit" id="dangnhap" name="dangnhap" value="Đăng nhập"/>
 			<!-- <button>Sign In</button> -->
 		</form>
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
 			<div class="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button class="ghost" id="signIn">Sign In</button>
+				<h1>Chào mừng</h1>
+				<p>Để giữ kết nối với chúng tôi, vui lòng đăng nhập bằng thông tin cá nhân của bạn</p>
+				<button class="ghost" id="signIn">Đăng Nhập</button>
 			</div>
 			<div class="overlay-panel overlay-right">
-				<h1>Hello, Friend!</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<button class="ghost" id="signUp">Sign Up</button>
+				<h1>Xin chào, Bạn!</h1>
+				<p>Nhập thông tin cá nhân của bạn và bắt đầu hành trình với chúng tôi</p>
+				<button class="ghost" id="signUp">Đăng Ký</button>
 			</div>
 		</div>
 	</div>

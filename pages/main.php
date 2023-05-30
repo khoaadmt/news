@@ -11,4 +11,7 @@
     } else if ($bientam == 'category') {
         include("main/danhmuc/main.php");
     }
+    else if ($bientam == 'contact') {
+        include("main/lienhe/main.php");
+    }
 ?>

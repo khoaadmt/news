@@ -34,7 +34,6 @@
         }
         else{
             echo 'Dasboard';
-        }
-           
+        }  
     ?>
 </div>
