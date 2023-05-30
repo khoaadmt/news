@@ -1,3 +1,11 @@
+<?php
+if (isset($_GET['search'])) {
+    $searching = $_GET['search'];
+    header("Location: index.php?action=category&category_id=0&current_page=1&searching=" . $searching);
+    exit; // Make sure to exit after the redirect
+}
+?>
+
 <header>
         <!-- Header Start -->
         <div class="header-area home">
@@ -53,7 +61,7 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="index.php?action=home">Trang chủ</a></li>
-                                            <li><a href="index.php?action=category">Danh mục</a></li>
+                                            <li><a href="index.php?action=category&category_id=0&current_page=1&searching=">Danh mục</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -63,9 +71,8 @@
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <i class="fas fa-search special-tag"></i>
                                     <div class="search-box">
-                                        <form action="#">
-                                            <input type="text" placeholder="Search">
-
+                                        <form action="" method="get">
+                                            <input type="text" placeholder="Search" name="search" id="search">
                                         </form>
                                     </div>
                                 </div>
