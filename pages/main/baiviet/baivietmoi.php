@@ -20,51 +20,53 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <!-- Trending Top -->
+                        <?php
+                             $sql_query = "SELECT *
+                             FROM tbl_baiviet
+                             JOIN tbl_danhmuc ON tbl_baiviet.id_danhmuc = tbl_danhmuc.id_danhMuc
+                             ORDER BY tbl_baiviet.id_BaiViet DESC";
+                          
+                             $query_lietke_baiviet =  mysqli_query($mysqli,$sql_query);
+                             while($row = mysqli_fetch_array($query_lietke_baiviet)){
+                        ?>
                         <div class="trending-top mb-30">
                             <div class="trend-top-img">
-                                <img src="assets/img/trending/trending_top.jpg" alt="">
+                                <img src="/admincp/modules/quanlybaiviet/uploads/<?php echo $row['hinhAnh'];?>" alt="">
                                 <div class="trend-top-cap">
-                                    <span>Appetizers</span>
-                                    <h2><a href="details.html">Welcome To The Best Model Winner<br> Contest At Look of the year</a></h2>
+                                    <span><?php echo $row['tenDanhMuc'];?></span>
+                                    <h2><a href="details.html"><?php echo $row['tieuDeBaiViet'];?></a></h2>
                                 </div>
                             </div>
                         </div>
+                        <?php
+                            break;
+                                    };
+                        ?>
                         <!-- Trending Bottom -->
                         <div class="trending-bottom">
                             <div class="row">
-                                <div class="col-lg-4">
-                                <div class="single-bottom mb-35">
-                                    <div class="trend-bottom-img mb-30">
-                                        <img src="assets/img/trending/trending_bottom1.jpg" alt="">
-                                    </div>
-                                    <div class="trend-bottom-cap">
-                                        <span class="color1">Lifestyple</span>
-                                        <h4><a href="details.html">Get the Illusion of Fuller Lashes by “Mascng.”</a></h4>
-                                    </div>
-                                </div>
-                                </div>
+                                     <?Php
+                                            $i =0;
+                                            while($row = mysqli_fetch_array($query_lietke_baiviet)){
+                                                    if($i >2)
+                                                        break;
+                                        ?>
                                 <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
                                         <div class="trend-bottom-img mb-30">
-                                            <img src="assets/img/trending/trending_bottom2.jpg" alt="">
+                                            <img src="/admincp/modules/quanlybaiviet/uploads/<?php echo $row['hinhAnh'];?>" alt="">
                                         </div>
                                         <div class="trend-bottom-cap">
-                                            <span class="color2">Sports</span>
-                                            <h4><h4><a href="details.html">Get the Illusion of Fuller Lashes by “Mascng.”</a></h4></h4>
+                                            <span class="color3"><?php echo $row['tenDanhMuc'];?></span>
+                                            <h4><a href="details.html"><?php echo $row['tieuDeBaiViet'];?></a></h4>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="single-bottom mb-35">
-                                        <div class="trend-bottom-img mb-30">
-                                            <img src="assets/img/trending/trending_bottom3.jpg" alt="">
-                                        </div>
-                                        <div class="trend-bottom-cap">
-                                            <span class="color3">Travels</span>
-                                            <h4><a href="details.html"> Welcome To The Best Model Winner Contest</a></h4>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                <?php
+                                        $i+=1;
+                                            };
+                                ?>
                             </div>
                         </div>
                     </div>
