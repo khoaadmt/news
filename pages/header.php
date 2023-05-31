@@ -63,12 +63,7 @@ if (isset($_GET['search'])) {
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="index.php?action=home">Trang chủ</a></li>
-<<<<<<< HEAD
                                             <li><a href="index.php?action=category&category_id=0&current_page=1&searching=">Danh mục</a></li>
-=======
-                                            <li><a href="index.php?action=category">Danh mục</a></li>
-                                            <li><a href="index.php?action=contact">Liên hệ</a></li>
->>>>>>> 00859cf86c6461ee2475a4052d34d0be933c1f68
                                         </ul>
                                     </nav>
                                 </div>
