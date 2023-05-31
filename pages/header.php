@@ -88,7 +88,7 @@ if (isset($_GET['search'])) {
                                     <?php
                                 } else {
                                     ?>
-                                    <a href="../index.php?dangxuat=1" class="dk_dn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                                    <a href="index.php?dangxuat=1" class="dk_dn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                                     <?php
                                 }
                                 ?>
