@@ -26,7 +26,6 @@
     }
     
     $query = mysqli_query($mysqli, $scripts);
-    
     $total_records = mysqli_num_rows($query);
 
 ?>
@@ -41,17 +40,17 @@
                     echo '<div class="col-lg-6 col-md-6">
                             <div class="single-what-news mb-100">
                                 <div class="what-img">';
-                    if (isset($tbl_row['hinhAnh'])) {
-                        echo '<img src="modules/quanlybaiviet/uploads/'.$tbl_row['hinhAnh'].'" alt="" width="344" height="370">';
+                    if (isset($tbl_row['hinhAnh']) && !empty($tbl_row['hinhAnh'])) {
+                        echo '<img src="admincp\modules\quanlybaiviet\uploads\\' . $tbl_row['hinhAnh'] . '" alt="" width="344" height="370">';
                     } else if (isset($tbl_row['video'])) {
                         echo '<iframe src="'.$tbl_row['video'].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                     } else {
-                        echo '<img src="admincp\modules\quanlybaiviet\uploads\1685335175_meo-cam-bong-hoa-tren-tay-manh-me-len.jpg" alt="" width="344" height="370">';
+                        echo '<img src="admincp\modules\quanlybaiviet\uploads\1685526202_345451550_217338341011625_710704284516695761_n.jpg" alt="" width="344" height="370">';
                     }
                     echo '</div>
                             <div class="what-cap">
                                 <span class="color1">'.$tbl_row['tendanhmuc'].'</span>
-                                <h4><a href="#">'.$tbl_row['tieuDeBaiViet'].'</a></h4>
+                                <h4><a href="index.php?action=post&idbaiviet='.$tbl_row['id_baiViet'].'">'.$tbl_row['tieuDeBaiViet'].'</a></h4>
                             </div>
                         </div>
                     </div>';

@@ -13,5 +13,7 @@
     }
     else if ($bientam == 'contact') {
         include("main/lienhe/main.php");
+    } else if ($bientam == "post") {
+        include("main/baiviet/baiviettheoId.php");
     }
 ?>

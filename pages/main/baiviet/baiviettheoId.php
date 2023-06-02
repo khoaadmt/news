@@ -1,3 +1,16 @@
+<?php
+
+   if(isset($_GET['idbaiviet'])){
+      $id_baiviet = $_GET['idbaiviet'];
+   }
+
+   $id_baiviet = intval($id_baiviet); 
+
+   $scripts = "SELECT * FROM tbl_baiviet WHERE id_baiViet = " . $id_baiviet;
+   $query = mysqli_query($mysqli, $scripts);
+   $tbl_row_bv = mysqli_fetch_array($query);
+?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -27,100 +40,6 @@
 </head>
 
 <body>
-   <header>
-      <!-- Header Start -->
-     <div class="header-area">
-          <div class="main-header ">
-              <div class="header-top black-bg d-none d-md-block">
-                 <div class="container">
-                     <div class="col-xl-12">
-                          <div class="row d-flex justify-content-between align-items-center">
-                              <div class="header-info-left">
-                                  <ul>     
-                                      <li><img src="assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
-                                      <li><img src="assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
-                                  </ul>
-                              </div>
-                              <div class="header-info-right">
-                                  <ul class="header-social">    
-                                      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                      <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                     <li> <a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                     </div>
-                 </div>
-              </div>
-              <div class="header-mid d-none d-md-block">
-                 <div class="container">
-                      <div class="row d-flex align-items-center">
-                          <!-- Logo -->
-                          <div class="col-xl-3 col-lg-3 col-md-3">
-                              <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                              </div>
-                          </div>
-                          <div class="col-xl-9 col-lg-9 col-md-9">
-                              <div class="header-banner f-right ">
-                                  <img src="assets/img/hero/header_card.jpg" alt="">
-                              </div>
-                          </div>
-                      </div>
-                 </div>
-              </div>
-             <div class="header-bottom header-sticky">
-                  <div class="container">
-                      <div class="row align-items-center">
-                          <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
-                              <!-- sticky -->
-                                  <div class="sticky-logo">
-                                      <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                                  </div>
-                              <!-- Main-menu -->
-                              <div class="main-menu d-none d-md-block">
-                                  <nav>                  
-                                      <ul id="navigation">    
-                                          <li><a href="index.html">Home</a></li>
-                                          <li><a href="categori.html">Category</a></li>
-                                          <li><a href="about.html">About</a></li>
-                                          <li><a href="latest_news.html">Latest News</a></li>
-                                          <li><a href="contact.html">Contact</a></li>
-                                          <li><a href="#">Pages</a>
-                                              <ul class="submenu">
-                                                  <li><a href="elements.html">Element</a></li>
-                                                  <li><a href="blog.html">Blog</a></li>
-                                                  <li><a href="single-blog.html">Blog Details</a></li>
-                                                  <li><a href="details.html">Categori Details</a></li>
-                                              </ul>
-                                          </li>
-                                      </ul>
-                                  </nav>
-                              </div>
-                          </div>             
-                          <div class="col-xl-2 col-lg-2 col-md-4">
-                              <div class="header-right-btn f-right d-none d-lg-block">
-                                  <i class="fas fa-search special-tag"></i>
-                                  <div class="search-box">
-                                      <form action="#">
-                                          <input type="text" placeholder="Search">
-                                          
-                                      </form>
-                                  </div>
-                              </div>
-                          </div>
-                          <!-- Mobile Menu -->
-                          <div class="col-12">
-                              <div class="mobile_menu d-block d-md-none"></div>
-                          </div>
-                      </div>
-                  </div>
-             </div>
-          </div>
-     </div>
-      <!-- Header End -->
-  </header>
-     
    <!--================Blog Area =================-->
    <section class="blog_area single-post-area section-padding">
       <div class="container">
@@ -128,45 +47,45 @@
             <div class="col-lg-8 posts-list">
                <div class="single-post">
                   <div class="feature-img">
-                     <img class="img-fluid" src="assets/img/blog/single_blog_1.png" alt="">
+                  <?php
+                     if (isset($tbl_row_bv['hinhAnh']) && !empty($tbl_row_bv['hinhAnh'])) {
+                        // echo "Image: admincp\modules\quanlybaiviet\uploads\\" . $tbl_row_bv['hinhAnh'];
+                        echo '<img src="admincp\modules\quanlybaiviet\uploads\\' . $tbl_row_bv['hinhAnh'] . '" alt="" width="344" height="370">';
+                     } else if (isset($tbl_row_bv['video'])) {
+                        // echo "Video: " . $tbl_row_bv['video'];
+                        echo '<iframe width="750" height="415" src="' . $tbl_row_bv['video'] . '" frameborder="0" allowfullscreen></iframe>';
+                     } else {
+                        // echo "Default Image";
+                        echo '<img src="admincp\modules\quanlybaiviet\uploads\1685526202_345451550_217338341011625_710704284516695761_n.jpg" alt="" width="344" height="370">';
+                     }
+                     ?>
+
+                     
                   </div>
                   <div class="blog_details">
-                     <h2>Second divided from form fish beast made every of seas
-                        all gathered us saying he our
+                     <h2>
+                        <?php
+                           echo $tbl_row_bv['tieuDeBaiViet'];
+                        ?>
                      </h2>
                      <ul class="blog-info-link mt-3 mb-4">
-                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                        <li>
+                           <a href="#"><i class="fa fa-user"></i>
+                              <?php
+                                 if (isset($tbl_row_bv['nguoiTao'])) {
+                                    echo $tbl_row_bv['nguoiTao'];
+                                 } else {
+                                    echo 'Anonymous user';
+                                 }
+                              ?>
+                           </a>
+                        </li>
                         <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                      </ul>
                      <p class="excert">
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower
-                     </p>
-                     <p>
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower to actually sit through a
-                        self-imposed MCSE training. who has the willpower to actually
-                     </p>
-                     <div class="quote-wrapper">
-                        <div class="quotes">
-                           MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                           should have to spend money on boot camp when you can get the MCSE study materials yourself at
-                           a fraction of the camp price. However, who has the willpower to actually sit through a
-                           self-imposed MCSE training.
-                        </div>
-                     </div>
-                     <p>
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower
-                     </p>
-                     <p>
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower to actually sit through a
-                        self-imposed MCSE training. who has the willpower to actually
+                     <?php
+                           echo $tbl_row_bv['noiDung'];
+                        ?>
                      </p>
                   </div>
                </div>
