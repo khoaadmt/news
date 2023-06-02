@@ -2,11 +2,9 @@
     if(isset($_GET['category_id'])){
         $categoryId = $_GET['category_id'];
     }
-
     if (isset($_GET['searching'])) {
         $searching = $_GET['searching'];
     }
-
     if (isset($_GET['current_page'])) {
         $current_page = $_GET['current_page'];
     }

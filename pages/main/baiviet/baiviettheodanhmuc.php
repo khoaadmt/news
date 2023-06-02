@@ -12,7 +12,7 @@
     }
 
     $categoryId = intval($categoryId); 
-    $offset = $current_page - 1;
+    $offset = ($current_page - 1) * 6;
     if ($categoryId == 0) {
         $scripts = "SELECT id_baiViet, bv.id_danhmuc, dm.tenDanhMuc AS tendanhmuc, tieuDeBaiViet, bv.video AS video, bv.hinhAnh AS hinhAnh 
         FROM `tbl_baiviet` AS bv JOIN tbl_danhmuc AS dm ON bv.id_danhmuc = dm.id_danhMuc 
@@ -43,7 +43,7 @@
                     if (isset($tbl_row['hinhAnh']) && !empty($tbl_row['hinhAnh'])) {
                         echo '<img src="admincp\modules\quanlybaiviet\uploads\\' . $tbl_row['hinhAnh'] . '" alt="" width="344" height="370">';
                     } else if (isset($tbl_row['video'])) {
-                        echo '<iframe src="'.$tbl_row['video'].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        echo '<iframe src="'.$tbl_row['video'].'" width="344" height="370" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                     } else {
                         echo '<img src="admincp\modules\quanlybaiviet\uploads\1685526202_345451550_217338341011625_710704284516695761_n.jpg" alt="" width="344" height="370">';
                     }

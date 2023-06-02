@@ -4,11 +4,28 @@
       $id_baiviet = $_GET['idbaiviet'];
    }
 
+   if(isset($_GET['id_khach_hang'])){
+      $id_khach_hang = $_GET['id_khach_hang'];
+   }
+
    $id_baiviet = intval($id_baiviet); 
 
-   $scripts = "SELECT * FROM tbl_baiviet WHERE id_baiViet = " . $id_baiviet;
-   $query = mysqli_query($mysqli, $scripts);
-   $tbl_row_bv = mysqli_fetch_array($query);
+   $scripts_get_bv_by_id = "SELECT * FROM tbl_baiviet WHERE id_baiViet = " . $id_baiviet;
+   $query_get_bv_by_id = mysqli_query($mysqli, $scripts_get_bv_by_id);
+   $tbl_row_bv = mysqli_fetch_array($query_get_bv_by_id);
+
+   $scripts_get_total_comment = "SELECT COUNT(*) AS total_comment FROM tbl_binhluan WHERE id_baiviet = " . $id_baiviet;
+   $query_get_total_comment = mysqli_query($mysqli, $scripts_get_total_comment);
+   $tbl_row_total_comment = mysqli_fetch_array($query_get_total_comment);
+
+   $scripts_get_total_like = "SELECT COUNT(*) AS total_like FROM tbl_baivietyeuthich WHERE id_baiviet = " . $id_baiviet;
+   $query_get_total_like = mysqli_query($mysqli, $scripts_get_total_like);
+   $tbl_row_total_like = mysqli_fetch_array($query_get_total_like);
+   
+?>
+
+<?php
+      
 ?>
    <!--================Blog Area =================-->
    <section class="blog_area single-post-area section-padding">
@@ -29,8 +46,6 @@
                         echo '<img src="admincp\modules\quanlybaiviet\uploads\1685526202_345451550_217338341011625_710704284516695761_n.jpg" alt="" width="344" height="370">';
                      }
                      ?>
-
-                     
                   </div>
                   <div class="blog_details">
                      <h2>
@@ -50,7 +65,14 @@
                               ?>
                            </a>
                         </li>
-                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                        <li><a href="#">
+                           <i class="fa fa-comments"></i> 
+                                 <?php
+                                    echo $tbl_row_total_comment['total_comment']
+                                 ?>
+                                 Bình luận
+                           </a>
+                        </li>
                      </ul>
                      <p class="excert">
                      <?php
@@ -61,8 +83,12 @@
                </div>
                <div class="navigation-top">
                   <div class="d-sm-flex justify-content-between text-center">
-                     <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
-                        people like this</p>
+                     <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> 
+                        <?php
+                           echo $tbl_row_total_comment['total_comment']
+                        ?>
+                        lượt thích
+                     </p>
                      <div class="col-sm-4 text-center my-2 my-sm-0">
                         <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                      </div>
@@ -116,21 +142,14 @@
                      </div>
                   </div>
                </div>
-               <div class="blog-author">
-                  <div class="media align-items-center">
-                     <img src="assets/img/blog/author.png" alt="">
-                     <div class="media-body">
-                        <a href="#">
-                           <h4>Harvard milan</h4>
-                        </a>
-                        <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-                           our dominion twon Second divided from</p>
-                     </div>
-                  </div>
-               </div>
                <div class="comments-area">
-                  <h4>05 Comments</h4>
-                  <div class="comment-list">
+                  <h4>
+                     <?php
+                        echo $tbl_row_total_comment['total_comment']
+                     ?>
+                     Bình luận
+                  </h4>
+                  <!-- <div class="comment-list">
                      <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
                            <div class="thumb">
@@ -156,32 +175,7 @@
                         </div>
                      </div>
                   </div>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="assets/img/comment/comment_2.png" alt="">
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                  
                   <div class="comment-list">
                      <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
@@ -207,6 +201,10 @@
                            </div>
                         </div>
                      </div>
+                  </div> -->
+                  <div id="chatbox">
+
+
                   </div>
                </div>
                <div class="comment-form">
@@ -214,12 +212,13 @@
                   <form class="form-contact comment_form" action="#" id="commentForm">
                      <div class="row">
                         <div class="col-12">
+                           <form id="messageForm">
                            <div class="form-group">
                               <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
                                  placeholder="Write Comment"></textarea>
                            </div>
                         </div>
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                            <div class="form-group">
                               <input class="form-control" name="name" id="name" type="text" placeholder="Name">
                            </div>
@@ -233,11 +232,12 @@
                            <div class="form-group">
                               <input class="form-control" name="website" id="website" type="text" placeholder="Website">
                            </div>
-                        </div>
+                        </div> -->
                      </div>
                      <div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                           <button type="submit">Send</button>
                      </div>
+                     </form>
                   </form>
                </div>
             </div>
@@ -418,4 +418,55 @@
          </div>
       </div>
    </section>
-   <!--================ Blog Area end =================-->
+   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+   <!-- <script>
+   $(document).ready(function() {
+      // Handle form submission
+      $('#messageForm').submit(function(e) {
+         e.preventDefault();
+         sendMessage();
+      });
+
+      function sendMessage() {
+         var message = $("#comment").val();
+
+         $.ajax({
+            type: "POST",
+            url: "index.php?action=post&idbaiviet=4.php",
+            data: { message: message },
+            success: function(response) {
+               $("#comment").val("");
+               displayMessage(message);
+            },
+            error: function(xhr, status, error) {
+               console.error(xhr.status);
+            }
+         });
+      }
+
+      function displayMessage(message) {
+         $("#chatbox").append("<p>" + message + "</p>");
+      }
+
+      // Retrieve messages on page load
+      receiveMessages();
+
+      function receiveMessages() {
+         $.ajax({
+            type: "GET",
+            url: "index.php?action=post&idbaiviet=4", // Provide the correct URL to retrieve messages from
+            success: function(response) {
+               // response.messages.forEach(function(message) {
+               //    displayMessage(message);
+               // });
+               console.log(response)
+            },
+            error: function(xhr, status, error) {
+               console.error(xhr.status);
+            }
+         });
+      }
+
+      // setInterval(receiveMessages, 2000); // Update every 2 seconds
+   });
+</script> -->
