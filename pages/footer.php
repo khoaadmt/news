@@ -49,7 +49,7 @@
                                             var formData = $(this).serialize(); // Lấy dữ liệu form
 
                                             $.ajax({
-                                                url: '../main/lienhe/lienhe.php',
+                                                url: 'pages/main/lienhe/themlienhe.php',
                                                 type: 'POST',
                                                 data: formData,
                                                 success: function(response) {
@@ -71,12 +71,42 @@
                                         });
                                         </script>
                                         <form target="_blank" action="#">
-                                            <input type="email" name="gmail" id="newsletter-form-email" placeholder="Gmail" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Gmail'">
-                                            <div class="form-icon">
-                                                <button type="submit" name="submit" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/logo/form-iocn.png" alt=""></button>
-                                            </div>
-                                            <div class="mt-10 info"></div>
+                                        <input type="text" name="gmail" id="newsletter-form-email" placeholder="Gmail" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Gmail'">
+                                        <div class="form-icon">
+                                            <button type="submit" name="submit1" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/logo/form-iocn.png" alt=""></button>
+                                        </div>
+                                        <div  id="email-error" style="color: red;"></div>
+                                        <input style="display: none;" type="text" name="id" value="<?php echo $id?>">
+
                                         </form>
+                                        <script>
+                                           // Lấy tham chiếu đến phần tử input email
+                                                var emailInput = document.getElementById('newsletter-form-email');
+                                                // Lấy tham chiếu đến nút submit
+                                                var submitButton = document.getElementById('newsletter-submit');
+                                                // Lấy tham chiếu đến phần tử thông báo lỗi
+                                                var errorDiv = document.getElementById('email-error');
+
+                                                // Gắn sự kiện kiểm tra email khi người dùng thay đổi nội dung trong input
+                                                emailInput.addEventListener('input', function() {
+                                                    // Lấy giá trị email từ input
+                                                    var email = emailInput.value;
+
+                                                    // Kiểm tra định dạng email
+                                                    var isValidEmail = email.endsWith('@gmail.com');
+
+                                                    // Hiển thị thông báo lỗi nếu email không hợp lệ
+                                                    if (!isValidEmail) {
+                                                        errorDiv.textContent = 'Định dạng Gmail không đúng';
+                                                    } else {
+                                                        errorDiv.textContent = ''; // Xóa thông báo lỗi nếu email hợp lệ
+                                                    }
+
+                                                    // Nếu email hợp lệ, bật nút submit, ngược lại tắt nút submit
+                                                    submitButton.disabled = !isValidEmail;
+                                                });
+                                        </script>
+                                            
                                     </div>
                                 </div>
                             </div>
