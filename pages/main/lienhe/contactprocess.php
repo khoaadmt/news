@@ -29,7 +29,7 @@
         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     
         //Recipients
-        $mail->setFrom('khoaadmt@gmail.com', 'Mailer');
+        $mail->setFrom('khoaadmt@gmail.com', 'AZ NEWS');
         $mail->addAddress('chinnen1603@gmail.com', 'test');     //Add a recipient
         // $mail->addAddress('ellen@example.com');               //Name is optional
         // $mail->addReplyTo('info@example.com', 'Information');
@@ -53,11 +53,11 @@
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
-    if ($mail) {
+    // if ($mail) {
         $response = array('success' => true);
-      } else {
-        $response = array('success' => false);
-      }
+      // } else {
+      //   $response = array('success' => false);
+      // }
       
       header('Content-Type: application/json');
       echo json_encode($response);

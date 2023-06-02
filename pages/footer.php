@@ -73,7 +73,7 @@
                                         <form target="_blank" action="#">
                                         <input type="text" name="gmail" id="newsletter-form-email" placeholder="Gmail" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Gmail'">
                                         <div class="form-icon">
-                                            <button type="submit" name="submit" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/logo/form-iocn.png" alt=""></button>
+                                            <button type="submit" name="submit1" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/logo/form-iocn.png" alt=""></button>
                                         </div>
                                         <div  id="email-error" style="color: red;"></div>
                                         <input style="display: none;" type="text" name="id" value="<?php echo $id?>">
