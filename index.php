@@ -42,8 +42,11 @@
 <body>
 <div class="wrapper">
         <?php
-            // $id_account = $_GET['id_admin'];
-            
+            $id = '';
+            if(isset($_SESSION['id_khachhang'])){
+                $id = $_SESSION['id_khachhang'];
+            }
+ 
             include("./admincp/config/config.php");
             // include("pages/menu.php");
             include("pages/header.php");
