@@ -11,7 +11,7 @@
 			$row_data = mysqli_fetch_array($row);
 			$_SESSION['dangnhap'] = $row_data['username'];
 			$_SESSION['email'] = $row_data['username'];
-            $_SESSION['id_user']= $row_data['id_admin'];		
+            $_SESSION['id_khachhang']= $row_data['id_admin'];		
 			header("Location: ../index.php");
 		}
         else{

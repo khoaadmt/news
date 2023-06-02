@@ -2,7 +2,7 @@
     session_start();
 	if(isset($_GET['dangxuat'])&&$_GET['dangxuat']==1){
         unset($_SESSION['dangnhap']);
-        unset($_SESSION['id_user']);
+        unset($_SESSION['id_khachhang']);
         header("Location:index.php");
 	}
 ?>
