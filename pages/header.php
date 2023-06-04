@@ -2,7 +2,7 @@
 if (isset($_GET['search'])) {
     $searching = $_GET['search'];
     header("Location: index.php?action=category&category_id=0&current_page=1&searching=" . $searching);
-    exit; // Make sure to exit after the redirect
+    exit;
 }
 ?>
 
@@ -80,6 +80,7 @@ if (isset($_GET['search'])) {
                                     <div class="search-box">
                                         <form action="" method="get">
                                             <input type="text" placeholder="Search" name="search" id="search">
+                                            
                                         </form>
                                     </div>
                                 </div>

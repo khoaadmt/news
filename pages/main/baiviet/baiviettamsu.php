@@ -1,3 +1,10 @@
+<?php 
+include './admincp/config/config.php';
+    $sql = "SELECT * FROM tbl_baivietts";
+    $result = mysqli_query($mysqli, $sql);
+
+?>
+
 <div class="weekly2-news-area  weekly2-pading gray-bg">
     <div class="container">
         <div class="weekly2-wrapper">
@@ -12,56 +19,36 @@
             <div class="row">
                 <div class="col-12">
                     <div class="weekly2-news-active dot-style d-flex dot-style">
-                        <div class="weekly2-single">
-                            <div class="weekly2-img">
-                                <img src="assets/img/news/weekly2News1.jpg" alt="">
-                            </div>
-                            <div class="weekly2-caption">
-                                <span class="color1">Corporate</span>
-                                <p>25 Jan 2020</p>
-                                <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
-                            </div>
-                        </div> 
-                        <div class="weekly2-single">
-                            <div class="weekly2-img">
-                                <img src="assets/img/news/weekly2News2.jpg" alt="">
-                            </div>
-                            <div class="weekly2-caption">
-                                <span class="color1">Event night</span>
-                                <p>25 Jan 2020</p>
-                                <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
-                            </div>
-                        </div> 
-                        <div class="weekly2-single">
-                            <div class="weekly2-img">
-                                <img src="assets/img/news/weekly2News3.jpg" alt="">
-                            </div>
-                            <div class="weekly2-caption">
-                                <span class="color1">Corporate</span>
-                                <p>25 Jan 2020</p>
-                                <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
-                            </div>
-                        </div>
-                            <div class="weekly2-single">
-                            <div class="weekly2-img">
-                                <img src="assets/img/news/weekly2News4.jpg" alt="">
-                            </div>
-                            <div class="weekly2-caption">
-                                <span class="color1">Event time</span>
-                                <p>25 Jan 2020</p>
-                                <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
-                            </div>
-                        </div> 
-                            <div class="weekly2-single">
-                            <div class="weekly2-img">
-                                <img src="assets/img/news/weekly2News4.jpg" alt="">
-                            </div>
-                            <div class="weekly2-caption">
-                                <span class="color1">Corporate</span>
-                                <p>25 Jan 2020</p>
-                                <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
-                            </div>
-                        </div> 
+                    <?php
+                            if (mysqli_num_rows($result) > 0) {
+                                while($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                                    <div class="weekly2-single">
+                                        <div class="weekly2-img">
+                                            <?php 
+                                                $img_path = $row['HinhAnh'];
+                                                echo '<img src="admincp\modules\quanlybaiviet\uploads\\' . $row['HinhAnh'] . '" alt="Hình ảnh" width="100%" height="200px"  style="object-fit:cover;">';
+                                            ?>
+                                        </div>
+                                        <div class="weekly2-caption">
+                                            <span class="color1"><?php echo $row["danhMuc"]; ?></span>
+                                            <p><?php echo "dan dep trai" ?></p>
+                                            <h4><a href="#"><?php echo $row["tieuDeBaiViet"]; ?></a></h4>
+                                        </div>
+                                    </div>
+                                  
+                            <?php
+                                }
+                            } else {
+                                echo "Không có dữ liệu";
+                            }
+
+                            // Đóng kết nối
+                            mysqli_close($mysqli);
+                            ?>
+                    
+                        
+                        
                     </div>
                 </div>
             </div>

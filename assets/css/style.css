@@ -2914,6 +2914,8 @@ hr {
     border-radius: 5px;
     transform: scale(1);
     transition: all 0.5s ease-out 0s;
+    height: 300px;
+    object-fit: cover;
 }
 
 .trending-area .trending-main .trending-bottom .single-bottom .trend-bottom-cap span {
@@ -3203,6 +3205,7 @@ hr {
 .contact-section .whats-news-caption .single-what-news .what-img img {
     border-radius: 6px;
     width: 100%;
+ object-fit: cover;
 }
 
 .whats-news-area .whats-news-caption .single-what-news .what-cap,
