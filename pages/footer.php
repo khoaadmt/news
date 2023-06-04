@@ -40,43 +40,42 @@
                                 <div class="footer-form">
             
                                     <div id="mc_embed_signup">
-                                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                        <script>
-                                        $(document).ready(function() {
-                                            $('form').submit(function(e) {
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                    <script>
+                                    $(document).ready(function() {
+                                        $('#themlienhe').submit(function(e) {
                                             e.preventDefault(); // Ngăn chặn gửi form mặc định
 
                                             var formData = $(this).serialize(); // Lấy dữ liệu form
 
                                             $.ajax({
-                                                url: 'pages/main/lienhe/themlienhe.php',
-                                                type: 'POST',
-                                                data: formData,
-                                                success: function(response) {
+                                            url: 'pages/main/lienhe/themlienhe.php',
+                                            type: 'POST',
+                                            data: formData,
+                                            success: function(response) {
+                                               
                                                 // Xử lý phản hồi từ server
                                                 if (response.success) {
-                                                    // Hiển thị thông báo gửi mail thành công
-                                                    alert('Đăng ký thành công!');
+                                                // Hiển thị thông báo gửi mail thành công
+                                                alert('Đăng ký thành công!');
                                                 } else {
-                                                    // Hiển thị thông báo lỗi gửi mail
-                                                    alert('Đã xảy ra lỗi khi đăng ký.');
+                                                // Hiển thị thông báo lỗi gửi mail
+                                                alert('Đã xảy ra lỗi khi đăng ký.');
                                                 }
-                                                },
-                                                error: function() {
-                                                // Xử lý khi có lỗi trong quá trình gửi Ajax
-                                                alert('Đã xảy ra lỗi.');
-                                                }
-                                                 });
+                                            },
+                                           
                                             });
                                         });
-                                        </script>
-                                        <form target="_blank" action="#">
-                                        <input type="text" name="gmail" id="newsletter-form-email" placeholder="Gmail" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Gmail'">
-                                        <div class="form-icon">
-                                            <button type="submit" name="submit1" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/logo/form-iocn.png" alt=""></button>
-                                        </div>
-                                        <div  id="email-error" style="color: red;"></div>
-                                        <input style="display: none;" type="text" name="id" value="<?php echo $id?>">
+                                    });
+                                    </script>
+
+                                        <form target="_blank" action="#" id="themlienhe">
+                                            <input type="text" name="gmail" id="newsletter-form-email" placeholder="Gmail" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Gmail'">
+                                            <div class="form-icon">
+                                                <button type="submit" name="submit1" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/logo/form-iocn.png" alt=""></button>
+                                            </div>
+                                            <div  id="email-error" style="color: red;"></div>
+                                            <input style="display: none;" type="text" name="id" value="<?php echo $id?>">
 
                                         </form>
                                         <script>

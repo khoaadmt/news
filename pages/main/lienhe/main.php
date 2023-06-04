@@ -47,7 +47,7 @@
     <!-- ================ contact section start ================= -->
     <section class="contact-section">
         <div class="container">
-            <div class="d-none d-sm-block mb-5 pb-4">
+            <!-- <div class="d-none d-sm-block mb-5 pb-4">
                 <div id="map" style="height: 480px; position: relative; overflow: hidden;">
                     <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
                         <div class="gm-style" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;">
@@ -267,7 +267,7 @@
                 </script>
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&amp;callback=initMap">
                 </script>
-            </div>
+            </div> -->
 
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
@@ -282,7 +282,10 @@
                     type: 'POST',
                     data: formData,
                     success: function(response) {
+
+                    
                     // Xử lý phản hồi từ server
+                    console.log(response + "here"); 
                     if (response.success) {
                         // Hiển thị thông báo gửi mail thành công
                         alert('Gửi mail thành công!');
@@ -291,10 +294,7 @@
                         alert('Đã xảy ra lỗi khi gửi mail.');
                     }
                     },
-                    error: function() {
-                    // Xử lý khi có lỗi trong quá trình gửi Ajax
-                    alert('Đã xảy ra lỗi.');
-                    }
+                    
                 });
                 });
             });

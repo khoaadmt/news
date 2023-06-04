@@ -1,18 +1,18 @@
 <?php
-    $mysqli = new mysqli("localhost","root","","newsdb");
-     $gmail = $_POST['gmail'];
-     $id = $_POST['id'];
-     
-      $sql_query = "INSERT INTO tbl_lienhe(gmail,id_account) VALUE('".$gmail."','".$id."')";
-      mysqli_query($mysqli,$sql_query);
+    $mysqli = new mysqli("localhost", "root", "", "newsdb");
+    $gmail = $_POST['gmail'];
+    $id = $_POST['id'];
     
-    // // if ($mail) {
-       $response = array('success' => true);
-    // // //   } else {
-    // // //     $response = array('success' => false);
-    // // //   }
-
+    $sql_query = "INSERT INTO tbl_lienhe (gmail, id_account) VALUES ('$gmail', '$id')";
+    $result = mysqli_query($mysqli, $sql_query);
     
-      header('Content-Type: application/json');
-      echo json_encode($response);
+    if ($result) {
+        $response = array('success' => true);
+    } else {
+        $response = array('success' => false);
+    }
+    
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    
 ?>
