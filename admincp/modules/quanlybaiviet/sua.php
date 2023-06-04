@@ -20,6 +20,7 @@
         <td>
             <img src="modules/quanlybaiviet/uploads/<?php echo$row['hinhAnh']?>" width="100px">
             <input type="file" name="hinhAnh">
+            <input type="text" name="oldImage" value="<?php echo$row['hinhAnh']?>" style="display: none;">
         </td>
     </tr>
     <tr>

@@ -32,44 +32,60 @@ require "C:\\xampp\\htdocs\\news\\vendor\\autoload.php";
         move_uploaded_file($hinhAnh_tmp,'uploads/'.$hinhAnh);
 
         // gửi mail cho các gmail đăng ký
-        $sql = "SELECT * FROM tbl_lienhe";
-        $query = mysqli_query($mysqli,$sql);
-        while($row = mysqli_fetch_array($query)){
-            $mail = new PHPMailer(true);
+        // $sql = "SELECT * FROM tbl_lienhe";
+        // $query = mysqli_query($mysqli,$sql);
+        // while($row = mysqli_fetch_array($query)){
+        //     $mail = new PHPMailer(true);
 
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'khoaadmt@gmail.com';                     //SMTP username
-            $mail->Password   = 'pvnyewnccqyqdvkw';                               //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        //     $mail->isSMTP();                                            //Send using SMTP
+        //     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        //     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        //     $mail->Username   = 'khoaadmt@gmail.com';                     //SMTP username
+        //     $mail->Password   = 'pvnyewnccqyqdvkw';                               //SMTP password
+        //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        //     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
-            //Recipients
-            $mail->setFrom('khoaadmt@gmail.com', 'AZ NEWS');
-            $mail->addAddress($row['gmail'], 'test');     //Add a recipient
+        //     //Recipients
+        //     $mail->setFrom('khoaadmt@gmail.com', 'AZ NEWS');
+        //     $mail->addAddress($row['gmail'], 'test');     //Add a recipient
         
-            //Content
-            $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = $subject;
-            $mail->Body    =  'Message: ' .'Đã có bài viết mới'. '<br>' .
-                            'Name: ' . $tieuDeBaiViet . '<br>' .
-                            'Email: ' . $tomTat. '<br>';
-        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        //     //Content
+        //     $mail->isHTML(true);                                  //Set email format to HTML
+        //     $mail->Subject = $subject;
+        //     $mail->Body    =  'Message: ' .'Đã có bài viết mới'. '<br>' .
+        //                     'Name: ' . $tieuDeBaiViet . '<br>' .
+        //                     'Email: ' . $tomTat. '<br>';
+        // // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
         
-            $mail->send();
-    };
+        //     $mail->send();
+        //     };
 
         header('location:../../index.php?%20action=quanLyBaiViet&query=them');
     }
     elseif(isset($_POST['suaBaiViet'])){
-        if(isset($_POST['hinhAnh'])){
-            $sql_query = "UPDATE tbl_baiViet SET tieuDeBaiViet = '".$tieuDeBaiViet."',hinhAnh = '".$hinhAnh."',
-            video = '".$link."',
-            tomTat= '".$tomTat."',noiDung = '".$noiDung."',id_danhmuc ='".$danhMuc."',
-            tacGia ='1'
+        if($hinhAnh != ''){
+            $oldImagePath = 'uploads/'.$_POST['oldImage'];
+            // echo $_POST['oldImage']. '<br>';
+            // echo  '<img src="'.$oldImagePath.'" width="100px">';
+            if (file_exists($oldImagePath)) {
+                $deleted = unlink($oldImagePath);
+                if ($deleted) {
+                    echo 'Xóa tệp tin thành công.';
+                } else {
+                    echo 'Không thể xóa tệp tin.';
+                }
+            } else {
+                echo 'Tệp tin không tồn tại.';
+            }            
+          
+            $sql_query = "UPDATE tbl_baiViet SET 
+            tieuDeBaiViet = '".$tieuDeBaiViet."',hinhAnh = '".$hinhAnh."',
+            video = '".$link."',tomTat= '".$tomTat."',noiDung = '".$noiDung."',
+            id_danhmuc ='".$danhMuc."',nguoiTao ='1'
             WHERE id_baiViet = '$_GET[id_baiViet]' ";
+            move_uploaded_file($hinhAnh_tmp,'uploads/'.$hinhAnh);
         }else{
+            echo "Isset = false";
             $sql_query = "UPDATE tbl_baiViet SET tieuDeBaiViet = '".$tieuDeBaiViet."',
             video = '".$link."',
             tomTat= '".$tomTat."',noiDung = '".$noiDung."',id_danhmuc ='".$danhMuc."',
@@ -77,7 +93,7 @@ require "C:\\xampp\\htdocs\\news\\vendor\\autoload.php";
             WHERE id_baiViet = '$_GET[id_baiViet]' ";
         }
       
-        mysqli_query($mysqli,$sql_query);
+       mysqli_query($mysqli,$sql_query);
         header('location:../../index.php?%20action=quanLyBaiViet&query=them');
     }
     else{
