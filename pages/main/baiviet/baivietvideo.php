@@ -1,27 +1,26 @@
+<?php 
+    include './admincp/config/config.php';
+    $query = mysqli_query($mysqli, "SELECT * FROM tbl_video ORDER BY ngayTao DESC LIMIT 6");
+if (!$query) {
+    printf("Error: %s\n", mysqli_error($mysqli));
+    exit();
+}
+?>
+
 <div class="youtube-area video-padding">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="video-items-active">
-                    <div class="video-items text-center">
-                        <iframe src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-items text-center">
-                        <iframe  src="https://www.youtube.com/embed/rIz00N40bag" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-items text-center">
-                        <iframe src="https://www.youtube.com/embed/CONfhrASy44" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-                    </div>
-                    <div class="video-items text-center">
-                        <iframe src="https://www.youtube.com/embed/lq6fL2ROWf8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        
-                    </div>
-                    <div class="video-items text-center">
-                        <iframe src="https://www.youtube.com/embed/0VxlQlacWV4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                </div>
+            <div class="video-items-active">
+                <?php
+                while ($row = mysqli_fetch_array($query)) {
+                    echo '<div class="video-items text-center">';
+                    echo '<iframe src="' . $row['video'] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                    echo '</div>';
+                }
+                ?>
             </div>
+        </div>
         </div>
         <div class="video-info">
             <div class="row">
@@ -38,36 +37,27 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="testmonial-nav text-center">
-                        <div class="single-video">
-                            <iframe  src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <div class="video-intro">
-                                <h4>Welcotme To The Best Model Winner Contest</h4>
-                            </div>
-                        </div>
-                        <div class="single-video">
-                            <iframe  src="https://www.youtube.com/embed/rIz00N40bag" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <div class="video-intro">
-                                <h4>Welcotme To The Best Model Winner Contest</h4>
-                            </div>
-                        </div>
-                        <div class="single-video">
-                            <iframe src="https://www.youtube.com/embed/CONfhrASy44" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <div class="video-intro">
-                                <h4>Welcotme To The Best Model Winner Contest</h4>
-                            </div>
-                        </div>
-                        <div class="single-video">
-                            <iframe src="https://www.youtube.com/embed/lq6fL2ROWf8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <div class="video-intro">
-                                <h4>Welcotme To The Best Model Winner Contest</h4>
-                            </div>
-                        </div>
-                        <div class="single-video">
-                            <iframe src="https://www.youtube.com/embed/0VxlQlacWV4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <div class="video-intro">
-                                <h4>Welcotme To The Best Model Winner Contest</h4>
-                            </div>
-                        </div>
+                        <?php
+                            $sql = "SELECT id_video, tieuDeVideo, video FROM tbl_video ORDER BY ngayTao ASCgit LIMIT 6";
+                            $result = mysqli_query($mysqli, $sql);
+                        
+                            // nếu có video thì hiển thị chúng trên trang
+                            if (mysqli_num_rows($result) > 0) {
+                                while($row = mysqli_fetch_assoc($result)) {
+                                    echo '<div class="single-video">';
+                                    echo '<iframe src="'.$row['video'].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                    echo '<div class="video-intro">';
+                                    echo '<h4>'.$row['tieuDeVideo'].'</h4>';
+                                    echo '</div>';
+                                    echo '</div>';
+                                }
+                            } else {
+                                echo "No videos found.";
+                            }
+                        
+                            // đóng kết nối
+                            mysqli_close($mysqli);
+                        ?>
                     </div>
                 </div>
             </div>
