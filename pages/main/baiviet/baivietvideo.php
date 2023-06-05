@@ -1,6 +1,6 @@
 <?php 
     include './admincp/config/config.php';
-    $query = mysqli_query($mysqli, "SELECT * FROM tbl_video ORDER BY ngayTao DESC LIMIT 6");
+    $query = mysqli_query($mysqli, "SELECT * FROM tbl_baiviet ORDER BY ngayTao DESC LIMIT 6");
 if (!$query) {
     printf("Error: %s\n", mysqli_error($mysqli));
     exit();
@@ -38,7 +38,7 @@ if (!$query) {
                 <div class="col-lg-6">
                     <div class="testmonial-nav text-center">
                         <?php
-                            $sql = "SELECT id_video, tieuDeVideo, video FROM tbl_video ORDER BY ngayTao ASCgit LIMIT 6";
+                            $sql = "SELECT id_baiViet, tieuDeBaiViet, video FROM tbl_baiviet ORDER BY ngayTao ASC LIMIT 6";
                             $result = mysqli_query($mysqli, $sql);
                         
                             // nếu có video thì hiển thị chúng trên trang
@@ -47,7 +47,7 @@ if (!$query) {
                                     echo '<div class="single-video">';
                                     echo '<iframe src="'.$row['video'].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                     echo '<div class="video-intro">';
-                                    echo '<h4>'.$row['tieuDeVideo'].'</h4>';
+                                    echo '<h4>'.$row['tieuDeBaiViet'].'</h4>';
                                     echo '</div>';
                                     echo '</div>';
                                 }
