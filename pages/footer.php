@@ -42,10 +42,10 @@
                                     <div id="mc_embed_signup">
                                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                     <script>
+                                    
                                     $(document).ready(function() {
                                         $('#themlienhe').submit(function(e) {
-                                            e.preventDefault(); // Ngăn chặn gửi form mặc định
-
+                                          
                                             var formData = $(this).serialize(); // Lấy dữ liệu form
 
                                             $.ajax({
@@ -69,7 +69,7 @@
                                     });
                                     </script>
 
-                                        <form target="_blank" action="#" id="themlienhe">
+                                        <form target="_blank" action="#" id="themlienhe" onsubmit="submitFormThemLienHe()">
                                             <input type="text" name="gmail" id="newsletter-form-email" placeholder="Gmail" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Gmail'">
                                             <div class="form-icon">
                                                 <button type="submit" name="submit1" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/logo/form-iocn.png" alt=""></button>

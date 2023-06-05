@@ -272,7 +272,7 @@
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
             $(document).ready(function() {
-                $('form').submit(function(e) {
+                $('#formSendmail').submit(function(e) {
                 e.preventDefault(); // Ngăn chặn gửi form mặc định
 
                 var formData = $(this).serialize(); // Lấy dữ liệu form
@@ -294,6 +294,10 @@
                         alert('Đã xảy ra lỗi khi gửi mail.');
                     }
                     },
+                    error: function() {
+                    // Xử lý khi có lỗi trong quá trình gửi Ajax
+                    alert('Đã xảy ra lỗi khi gửi mail đến admin');
+                }
                     
                 });
                 });
@@ -305,7 +309,7 @@
                     <h2 class="contact-title">Liên hệ với chúng tôi</h2>
                 </div>
                 <div class="col-lg-8">
-                    <form class="form-contact contact_form" action="#" method="POST"  novalidate="novalidate">
+                    <form id="formSendmail" class="form-contact contact_form" action="#"  novalidate="novalidate" onsubmit="submitFormSendmail()">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
