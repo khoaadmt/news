@@ -19,7 +19,7 @@
         margin: auto;
     }
     body {
-  background-image: url("./admincp/modules/quanlybaiviet/uploads/Screenshot\ 2023-06-05\ 110442.png"); /* Đường dẫn đến hình ảnh background */
+  background-image: url("../../../admincp/modules/quanlybaiviet/uploads/Screenshot\ 2023-06-05\ 110442.png"); /* Đường dẫn đến hình ảnh background */
   background-repeat: no-repeat;
   background-size: cover; /* Điều chỉnh kích thước để vừa với trình duyệt */
   object-fit: cover;
@@ -126,6 +126,6 @@ body::before {
 </body>
 <script>
     function hidePostForm() {
-  window.location.href = "index.php";
+  window.location.href = "../../../index.php";
 }
 </script>
