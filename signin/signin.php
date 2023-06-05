@@ -11,7 +11,8 @@
 			$row_data = mysqli_fetch_array($row);
 			$_SESSION['dangnhap'] = $row_data['username'];
 			$_SESSION['email'] = $row_data['username'];
-            $_SESSION['id_khachhang']= $row_data['id_admin'];		
+            $_SESSION['id_khachhang'] = $row_data['id_admin'];		
+			$_SESSION['admin_status'] = $row_data['admin_status'];
 			header("Location: ../index.php");
 		}
         else{
@@ -26,7 +27,7 @@
         $nhaplaimatkhau = $_POST['ConfirmPasswordSignUp'];
         
         if ($matkhau == $nhaplaimatkhau) {
-            $sql_dangky = "INSERT INTO tbl_admin(username, password) VALUES ('".$taikhoan."', '".$matkhau."')";
+            $sql_dangky = "INSERT INTO tbl_admin(username, password, admin_status) VALUES ('".$taikhoan."', '".$matkhau."', 2)";
             $query_dangky=mysqli_query($mysqli,$sql_dangky);
             if($query_dangky){
                 echo '<script>alert("Đăng ký thành công"); window.location.href = "signin.php";</script>';

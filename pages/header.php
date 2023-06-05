@@ -167,7 +167,6 @@ if (isset($_GET['search'])) {
                     </div>
                 </div>
             </section>
-
         </div>
         <script src="./assets/js/login.js"></script>
         <!-- Header End -->

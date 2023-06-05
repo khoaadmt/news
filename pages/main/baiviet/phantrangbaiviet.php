@@ -50,12 +50,7 @@
                                 if ($current_page < $total_page) {
                                     echo '<li class="page-item"><a class="page-link" href="index.php?action=category&category_id='.$categoryId.'&current_page='.($current_page + 1).'&searching='.$searching.'"><span class="flaticon-arrow right-arrow"></span></a></li>';
                                 }
-                                
                             ?>
-
-                            <!-- 
-                            <li class="page-item active"><a class="page-link" href="#">01</a></li>  
-                            <li class="page-item"><a class="page-link" href="#"><span class="flaticon-arrow right-arrow"></span></a></li> -->
                         </ul>
                         </nav>
                 </div>

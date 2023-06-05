@@ -4,8 +4,10 @@
       $id_baiviet = $_GET['idbaiviet'];
    }
 
-   if(isset($_GET['id_khach_hang'])){
-      $id_khach_hang = $_GET['id_khach_hang'];
+   if (isset($_SESSION['id_khachhang'])) {
+      $id_khach_hang = $_SESSION['id_khachhang'];
+   } else {
+      $id_khach_hang = 0;
    }
 
    $id_baiviet = intval($id_baiviet); 
@@ -83,11 +85,18 @@
                </div>
                <div class="navigation-top">
                   <div class="d-sm-flex justify-content-between text-center">
-                     <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> 
-                        <?php
-                           echo $tbl_row_total_comment['total_comment']
-                        ?>
-                        lượt thích
+                     <p class="like-info"><span class="align-middle">
+                     <form method="post" >
+                        <input type="hidden" name="idKhachHang" value="<?php echo $id_khach_hang ?>"/>
+                        <input type="hidden" name="idBaiViet" value="<?php echo $id_baiviet ?>"/>
+                        <button type="submit" class="icon-button">
+                           <i class="fa fa-heart"></i>
+                        </button>
+                     </form>
+                     <?php
+                        echo $tbl_row_total_like['total_like']
+                     ?>
+                     lượt thích
                      </p>
                      <div class="col-sm-4 text-center my-2 my-sm-0">
                         <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
