@@ -2,7 +2,7 @@
 if (isset($_GET['search'])) {
     $searching = $_GET['search'];
     header("Location: index.php?action=category&category_id=0&current_page=1&searching=" . $searching);
-    exit;
+    exit; // Make sure to exit after the redirect
 }
 ?>
 
@@ -65,10 +65,6 @@ if (isset($_GET['search'])) {
                                             <li><a href="index.php?action=home">Trang chủ</a></li>
                                             <li><a href="index.php?action=category&category_id=0&current_page=1&searching=">Danh mục</a></li>
                                             <li><a href="index.php?action=contact">Liên Hệ</a></li>
-                                            <?php
-                                                if($id !='')
-                                                echo '<li><a href="index.php?action=contact">Tâm sự</a></li>';
-                                            ?>
                                         </ul>
                                     </nav>
                                 </div>
@@ -80,25 +76,31 @@ if (isset($_GET['search'])) {
                                     <div class="search-box">
                                         <form action="" method="get">
                                             <input type="text" placeholder="Search" name="search" id="search">
-                                            
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            <div class="DN_DK">
-                                <?php
-                                
+                            <?php 
+
                                 if (!isset($_SESSION['dangnhap'])) {
-                                    ?>
+                            ?>
+                                <div class="DN_DK">
                                     <a href="./signin/signin.php" class="dk_dn">Đăng ký | Đăng nhập</a>
-                                    <?php
-                                } else {
-                                    ?>
-                                    <a href="index.php?dangxuat=1" class="dk_dn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-                                    <?php
-                                }
+                                </div>
+                                <?php 
+                            } else { 
+                                // Người dùng đã đăng nhập
+                                echo '<button style="color: black; border-radius:5px; background-color: #4876FF;width:80px;"><a href="form_bvts.php">Đăng bài</a></button>';
                                 ?>
-                            </div>
+                                <div class="DN_DK">
+                                    <a href="index.php?dangxuat=1" class="dk_dn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                                </div>
+                                <?php 
+                            }
+
+                            // Hiển thị bài viết tâm sự mới nhất ở đây
+                            ?>
+                        
                             <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-md-none"></div>
@@ -167,6 +169,7 @@ if (isset($_GET['search'])) {
                     </div>
                 </div>
             </section>
+
         </div>
         <script src="./assets/js/login.js"></script>
         <!-- Header End -->
