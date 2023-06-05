@@ -1,5 +1,4 @@
 <?php
-
     if(isset($_GET['idbaiviet'])){
         $id_baiviet = $_GET['idbaiviet'];
     }

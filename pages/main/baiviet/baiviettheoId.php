@@ -1,4 +1,9 @@
 <?php
+   $currentURL = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+   $encoded_url = urlencode($currentURL);
+
+   $parameters = "&layout&size&width=77&height=20&appId";
+   $final_url = $encoded_url . $parameters;
 
    if(isset($_GET['idbaiviet'])){
       $id_baiviet = $_GET['idbaiviet'];
@@ -20,6 +25,12 @@
    $query_get_total_comment = mysqli_query($mysqli, $scripts_get_total_comment);
    $tbl_row_total_comment = mysqli_fetch_array($query_get_total_comment);
 
+   $scripts_get_comments = "SELECT noidung, a.username AS username 
+                              FROM `tbl_binhluan` b 
+                              JOIN tbl_admin a ON b.id_account = a.id_admin  WHERE id_baiviet = " . $id_baiviet;
+   $query_get_comments = mysqli_query($mysqli, $scripts_get_comments);
+   $tbl_row_get_comments = mysqli_fetch_array($query_get_comments);
+
    $scripts_get_total_like = "SELECT COUNT(*) AS total_like FROM tbl_baivietyeuthich WHERE id_baiviet = " . $id_baiviet;
    $query_get_total_like = mysqli_query($mysqli, $scripts_get_total_like);
    $tbl_row_total_like = mysqli_fetch_array($query_get_total_like);
@@ -27,7 +38,46 @@
 ?>
 
 <?php
+    if(isset($_GET['idbaiviet'])){
+        $id_baiviet = $_GET['idbaiviet'];
+    }
+
+    if (isset($_POST['submit'])) {
+        $idKhachHang = intval($_POST['idKhachHang']);
+        $idBaiViet = intval($_POST['idBaiViet']);
+
+        if ($idKhachHang == 0) {
+            echo "<script type='text/javascript'>alert('Bạn cần đăng nhập để thực hiện chức năng này');</script>";
+            exit();
+        }
+
+        $scripts_find_existed_like = "SELECT * FROM tbl_baivietyeuthich WHERE id_baiviet = " . $idBaiViet . " AND id_account = " . $idKhachHang . ";";
+        $query_find_existed_like = mysqli_query($mysqli, $scripts_find_existed_like);
+        $total_results = mysqli_num_rows($query_find_existed_like);
+
+        if($total_results == 1) {
+            $script_unlike = "DELETE FROM tbl_baivietyeuthich WHERE id_baiviet = " . $idBaiViet . " AND id_account = " . $idKhachHang . ";";
+            $query_unlike = mysqli_query($mysqli, $script_unlike);
+        } else {
+         $script_like = "INSERT INTO tbl_baivietyeuthich (id_account, id_baiviet) VALUES (" . $idKhachHang . ", " . $idBaiViet . ")";
+            $query_like = mysqli_query($mysqli, $script_like);
+        }
+    }
+?>
+
+<?php
+   if (isset($_POST['commentsubmit'])) {
       
+      $idKhachHang = intval($_POST['idKhachHang']);
+      $idBaiViet = intval($_POST['idBaiViet']);
+      $noidung = $_POST['noidung'];
+      if ($idKhachHang == 0 || empty($noidung)) {
+         echo "<script type='text/javascript'>alert('Bạn cần đăng nhập để thực hiện chức năng này');</script>";
+         exit();
+      }
+      $script_comment = "INSERT INTO tbl_binhluan (id_account, id_baiviet, noidung) VALUES ($idKhachHang, $idBaiViet, '$noidung')";
+      $query_comment = mysqli_query($mysqli, $script_comment);
+   }
 ?>
    <!--================Blog Area =================-->
    <section class="blog_area single-post-area section-padding">
@@ -86,10 +136,10 @@
                <div class="navigation-top">
                   <div class="d-sm-flex justify-content-between text-center">
                      <p class="like-info"><span class="align-middle">
-                     <form method="post" >
+                     <form method="post" action="">
                         <input type="hidden" name="idKhachHang" value="<?php echo $id_khach_hang ?>"/>
                         <input type="hidden" name="idBaiViet" value="<?php echo $id_baiviet ?>"/>
-                        <button type="submit" class="icon-button">
+                        <button type="submit" class="icon-button" name="submit">
                            <i class="fa fa-heart"></i>
                         </button>
                      </form>
@@ -101,11 +151,9 @@
                      <div class="col-sm-4 text-center my-2 my-sm-0">
                         <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                      </div>
+                     
                      <ul class="social-icons">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
-                        <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                     <iframe src="https://www.facebook.com/plugins/share_button.php?href=<?php echo $final_url ?>" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                      </ul>
                   </div>
                   <div class="navigation-area">
@@ -158,72 +206,46 @@
                      ?>
                      Bình luận
                   </h4>
-                  <!-- <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="assets/img/comment/comment_1.png" alt="">
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
+                  <?php
+                  $total_records = mysqli_num_rows($query_get_comments);
+                  while ($tbl_row_get_comments = mysqli_fetch_array($query_get_comments)) {
+                      echo '
+                          <div class="comment-list">
+                              <div class="single-comment justify-content-between d-flex">
+                                  <div class="user justify-content-between d-flex">
+                                      <div class="thumb">
+                                          <img src="assets/img/comment/comment_1.png" alt="">
+                                      </div>
+                                      <div class="desc">
+                                          <p class="comment">
+                                              '.$tbl_row_get_comments['noidung'].'
+                                          </p>
+                                          <div class="d-flex justify-content-between">
+                                              <div class="d-flex align-items-center">
+                                                  <h5>
+                                                      <a href="#">'.$tbl_row_get_comments['username'].'</a>
+                                                  </h5>
+                                                  <p class="date">December 4, 2017 at 3:12 pm</p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
                               </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                          </div>
+                      ';
+                  }
                   
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="assets/img/comment/comment_3.png" alt="">
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div> -->
-                  <div id="chatbox">
-
-
-                  </div>
+                  ?>
                </div>
                <div class="comment-form">
                   <h4>Leave a Reply</h4>
-                  <form class="form-contact comment_form" action="#" id="commentForm">
+                  <form class="form-contact comment_form" action="" method="post">
+                     <input type="hidden" name="idKhachHang" value="<?php echo $id_khach_hang ?>"/>
+                     <input type="hidden" name="idBaiViet" value="<?php echo $id_baiviet ?>"/>
                      <div class="row">
                         <div class="col-12">
-                           <form id="messageForm">
                            <div class="form-group">
-                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
+                              <textarea class="form-control w-100" name="noidung" id="noidung" cols="30" rows="9"
                                  placeholder="Write Comment"></textarea>
                            </div>
                         </div>
@@ -244,9 +266,8 @@
                         </div> -->
                      </div>
                      <div class="form-group">
-                           <button type="submit">Send</button>
+                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
                      </div>
-                     </form>
                   </form>
                </div>
             </div>
@@ -427,31 +448,32 @@
          </div>
       </div>
    </section>
-   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-   <!-- <script>
-   $(document).ready(function() {
-      // Handle form submission
-      $('#messageForm').submit(function(e) {
-         e.preventDefault();
-         sendMessage();
-      });
-
-      function sendMessage() {
-         var message = $("#comment").val();
-
-         $.ajax({
-            type: "POST",
-            url: "index.php?action=post&idbaiviet=4.php",
-            data: { message: message },
-            success: function(response) {
-               $("#comment").val("");
-               displayMessage(message);
-            },
-            error: function(xhr, status, error) {
-               console.error(xhr.status);
-            }
+   
+   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script>
+      $(document).ready(function() {
+         // Handle form submission
+         $('#messageForm').submit(function(e) {
+            e.preventDefault();
+            sendMessage();
          });
-      }
+
+         function sendMessage() {
+            var message = $("#comment").val();
+
+            $.ajax({
+               type: "POST",
+               url: "index.php?action=post&idbaiviet=56.php",
+               data: { message: message },
+               success: function(response) {
+                  $("#comment").val("");
+                  displayMessage(message);
+               },
+               error: function(xhr, status, error) {
+                  console.error(xhr.status);
+               }
+            });
+         }
 
       function displayMessage(message) {
          $("#chatbox").append("<p>" + message + "</p>");
