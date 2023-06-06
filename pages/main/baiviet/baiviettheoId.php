@@ -1,5 +1,45 @@
 <?php
-   $currentURL = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+   if (isset($_POST['commentsubmit'])) {
+      
+      $idKhachHang = intval($_POST['idKhachHang']);
+      $idBaiViet = intval($_POST['idBaiViet']);
+      $noidung = $_POST['noidung'];
+      if ($idKhachHang == 0 || empty($noidung)) {
+         echo "<script type='text/javascript'>alert('Bạn cần đăng nhập để thực hiện chức năng này');</script>";
+         exit();
+      }
+      $script_comment = "INSERT INTO tbl_binhluan (id_account, id_baiviet, noidung) VALUES ($idKhachHang, $idBaiViet, '$noidung')";
+      $query_comment = mysqli_query($mysqli, $script_comment);
+
+   }
+
+   if(isset($_GET['idbaiviet'])){
+      $id_baiviet = $_GET['idbaiviet'];
+   }
+
+  if (isset($_POST['submit'])) {
+      $idKhachHang = intval($_POST['idKhachHang']);
+      $idBaiViet = intval($_POST['idBaiViet']);
+
+      if ($idKhachHang == 0) {
+          echo "<script type='text/javascript'>alert('Bạn cần đăng nhập để thực hiện chức năng này');</script>";
+          exit();
+      }
+
+      $scripts_find_existed_like = "SELECT * FROM tbl_baivietyeuthich WHERE id_baiviet = " . $idBaiViet . " AND id_account = " . $idKhachHang . ";";
+      $query_find_existed_like = mysqli_query($mysqli, $scripts_find_existed_like);
+      $total_results = mysqli_num_rows($query_find_existed_like);
+
+      if($total_results == 1) {
+          $script_unlike = "DELETE FROM tbl_baivietyeuthich WHERE id_baiviet = " . $idBaiViet . " AND id_account = " . $idKhachHang . ";";
+          $query_unlike = mysqli_query($mysqli, $script_unlike);
+      } else {
+       $script_like = "INSERT INTO tbl_baivietyeuthich (id_account, id_baiviet) VALUES (" . $idKhachHang . ", " . $idBaiViet . ")";
+          $query_like = mysqli_query($mysqli, $script_like);
+      }
+  }
+
+  $currentURL = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
    $encoded_url = urlencode($currentURL);
 
    $parameters = "&layout&size&width=77&height=20&appId";
@@ -34,51 +74,8 @@
    $scripts_get_total_like = "SELECT COUNT(*) AS total_like FROM tbl_baivietyeuthich WHERE id_baiviet = " . $id_baiviet;
    $query_get_total_like = mysqli_query($mysqli, $scripts_get_total_like);
    $tbl_row_total_like = mysqli_fetch_array($query_get_total_like);
-   
 ?>
 
-<?php
-    if(isset($_GET['idbaiviet'])){
-        $id_baiviet = $_GET['idbaiviet'];
-    }
-
-    if (isset($_POST['submit'])) {
-        $idKhachHang = intval($_POST['idKhachHang']);
-        $idBaiViet = intval($_POST['idBaiViet']);
-
-        if ($idKhachHang == 0) {
-            echo "<script type='text/javascript'>alert('Bạn cần đăng nhập để thực hiện chức năng này');</script>";
-            exit();
-        }
-
-        $scripts_find_existed_like = "SELECT * FROM tbl_baivietyeuthich WHERE id_baiviet = " . $idBaiViet . " AND id_account = " . $idKhachHang . ";";
-        $query_find_existed_like = mysqli_query($mysqli, $scripts_find_existed_like);
-        $total_results = mysqli_num_rows($query_find_existed_like);
-
-        if($total_results == 1) {
-            $script_unlike = "DELETE FROM tbl_baivietyeuthich WHERE id_baiviet = " . $idBaiViet . " AND id_account = " . $idKhachHang . ";";
-            $query_unlike = mysqli_query($mysqli, $script_unlike);
-        } else {
-         $script_like = "INSERT INTO tbl_baivietyeuthich (id_account, id_baiviet) VALUES (" . $idKhachHang . ", " . $idBaiViet . ")";
-            $query_like = mysqli_query($mysqli, $script_like);
-        }
-    }
-?>
-
-<?php
-   if (isset($_POST['commentsubmit'])) {
-      
-      $idKhachHang = intval($_POST['idKhachHang']);
-      $idBaiViet = intval($_POST['idBaiViet']);
-      $noidung = $_POST['noidung'];
-      if ($idKhachHang == 0 || empty($noidung)) {
-         echo "<script type='text/javascript'>alert('Bạn cần đăng nhập để thực hiện chức năng này');</script>";
-         exit();
-      }
-      $script_comment = "INSERT INTO tbl_binhluan (id_account, id_baiviet, noidung) VALUES ($idKhachHang, $idBaiViet, '$noidung')";
-      $query_comment = mysqli_query($mysqli, $script_comment);
-   }
-?>
    <!--================Blog Area =================-->
    <section class="blog_area single-post-area section-padding">
       <div class="container">
@@ -266,7 +263,7 @@
                         </div> -->
                      </div>
                      <div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                        <button type="submit" name="commentsubmit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
                      </div>
                   </form>
                </div>
@@ -448,56 +445,3 @@
          </div>
       </div>
    </section>
-   
-   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script>
-      $(document).ready(function() {
-         // Handle form submission
-         $('#messageForm').submit(function(e) {
-            e.preventDefault();
-            sendMessage();
-         });
-
-         function sendMessage() {
-            var message = $("#comment").val();
-
-            $.ajax({
-               type: "POST",
-               url: "index.php?action=post&idbaiviet=56.php",
-               data: { message: message },
-               success: function(response) {
-                  $("#comment").val("");
-                  displayMessage(message);
-               },
-               error: function(xhr, status, error) {
-                  console.error(xhr.status);
-               }
-            });
-         }
-
-      function displayMessage(message) {
-         $("#chatbox").append("<p>" + message + "</p>");
-      }
-
-      // Retrieve messages on page load
-      receiveMessages();
-
-      function receiveMessages() {
-         $.ajax({
-            type: "GET",
-            url: "index.php?action=post&idbaiviet=4", // Provide the correct URL to retrieve messages from
-            success: function(response) {
-               // response.messages.forEach(function(message) {
-               //    displayMessage(message);
-               // });
-               console.log(response)
-            },
-            error: function(xhr, status, error) {
-               console.error(xhr.status);
-            }
-         });
-      }
-
-      // setInterval(receiveMessages, 2000); // Update every 2 seconds
-   });
-</script> -->
