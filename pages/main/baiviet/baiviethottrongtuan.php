@@ -1,15 +1,15 @@
 
-<?php
-$sql_BaiViet = "SELECT b.*, dm.tenDanhMuc AS tenDanhMuc
-FROM tbl_baiviet AS b
-JOIN tbl_binhluan AS bl ON b.id_baiviet = bl.id_baiviet
-JOIN tbl_danhmuc AS dm ON b.id_danhmuc = dm.id_danhmuc
-GROUP BY b.id_baiviet, dm.tenDanhMuc
-ORDER BY COUNT(*) DESC
-LIMIT 4";
-$query_bv = mysqli_query($mysqli, $sql_BaiViet);
-$row_bv_title = mysqli_fetch_array($query_bv);
-?>
+    <?php
+        $sql_BaiViet = "SELECT b.*, dm.tenDanhMuc AS tenDanhMuc
+        FROM tbl_baiviet AS b
+        JOIN tbl_binhluan AS bl ON b.id_baiviet = bl.id_baiviet
+        JOIN tbl_danhmuc AS dm ON b.id_danhmuc = dm.id_danhmuc
+        GROUP BY b.id_baiviet, dm.tenDanhMuc
+        ORDER BY COUNT(*) DESC
+        LIMIT 4";
+        $query_bv = mysqli_query($mysqli, $sql_BaiViet);
+        //$row_bv_title = mysqli_fetch_array($query_bv);
+    ?>
 <div class="weekly-news-area pt-50">
     <div class="container">
         <div class="weekly-wrapper">
