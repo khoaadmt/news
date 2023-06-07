@@ -6787,3 +6787,28 @@ del {
 .like-icon.active {
     color: red;
 }
+.like-button {
+    background-color: #fff;
+    border: 2px solid #2196f3;
+    color: #2196f3;
+    padding: 6px 16px;
+    border-radius: 24px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.like-button:hover {
+    background-color: #2196f3;
+    color: #fff;
+}
+
+.liked {
+    background-color: #ffffff;
+    color: #ec2b2b;
+    border: 2px solid #ec2b2b;
+}
+
+.like-button.liked i {
+    color: red;
+}
