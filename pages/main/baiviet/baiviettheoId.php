@@ -136,15 +136,33 @@
                      <form method="post" action="">
                         <input type="hidden" name="idKhachHang" value="<?php echo $id_khach_hang ?>"/>
                         <input type="hidden" name="idBaiViet" value="<?php echo $id_baiviet ?>"/>
-                        <button type="submit" class="icon-button" name="submit">
-                           <i class="fa fa-heart"></i>
+                        <button type="submit" class="icon-button like-button" name="submit">
+                           <i class="fa fa-heart" onclick="likeButtonClick(button)"></i>
                         </button>
                      </form>
+
                      <?php
                         echo $tbl_row_total_like['total_like']
                      ?>
                      lượt thích
                      </p>
+
+                     <script>
+                        function likeButtonClick(button) {
+                                 var likeBtn = button;
+                                 var isLiked = false;
+
+                                 likeBtn.addEventListener('click', function() {
+                                    if (isLiked) {
+                                       likeBtn.classList.remove('liked');
+                                       isLiked = false;
+                                    } else {
+                                       likeBtn.add('liked');
+                                       isLiked = true;
+                                    }
+                                 });
+                                 }
+                     </script>
                      <div class="col-sm-4 text-center my-2 my-sm-0">
                         <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                      </div>
