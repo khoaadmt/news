@@ -95,8 +95,7 @@ if (isset($_GET['search'])) {
                                 </div>
                                 <?php 
                             } else { 
-                                // Người dùng đã đăng nhập
-                                echo '<button style="color: black; border-radius:5px; background-color: #4876FF;width:80px;"><a href="../pages/main/baiviet/form_bvts.php">Đăng bài</a></button>';
+                                // Người dùng đã đăng nhậ
                                 ?>
                                 <div class="DN_DK">
                                     <a href="index.php?dangxuat=1" class="dk_dn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
