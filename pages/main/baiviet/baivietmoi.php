@@ -55,7 +55,7 @@ $row_bv_title = mysqli_fetch_array($query_bv);
                                         echo $record['tenDanhMuc'];
                                         ?>
                                     </span>
-                                    <h2><a href="details.html"><?php echo $record['tieuDeBaiViet']; ?></a></h2>
+                                    <h2><a href="index.php?action=post&idbaiviet='.$record['id_baiViet'].'"><?php echo $record['tieuDeBaiViet']; ?></a></h2>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@ $row_bv_title = mysqli_fetch_array($query_bv);
                                         echo $record['tenDanhMuc'];
                                         ?>
                                         </span>
-                                        <h4><a href="details.html"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
+                                        <h4><a href="index.php?action=post&idbaiviet='.$record['id_baiViet'].'"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
                                     </div>
                                 </div>
                                 </div>
@@ -115,7 +115,7 @@ $row_bv_title = mysqli_fetch_array($query_bv);
                                             echo $record['tenDanhMuc'];
                                             ?>
                                             </span>
-                                            <h4><h4><a href="details.html"><?php echo $record['tieuDeBaiViet']; ?></a></h4></h4>
+                                            <h4><h4><a href="index.php?action=post&idbaiviet='.$record['id_baiViet'].'"><?php echo $record['tieuDeBaiViet']; ?></a></h4></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@ $row_bv_title = mysqli_fetch_array($query_bv);
                                                 echo $record['tenDanhMuc'];
                                             ?>
                                             </span>
-                                            <h4><a href="details.html"> <?php echo $record['tieuDeBaiViet']; ?></a></h4>
+                                            <h4><a href="index.php?action=post&idbaiviet='.$record['id_baiViet'].'"> <?php echo $record['tieuDeBaiViet']; ?></a></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -175,7 +175,7 @@ $row_bv_title = mysqli_fetch_array($query_bv);
                                     echo $record['tenDanhMuc'];
                                 ?>
                                 </span>
-                                <h4><a href="details.html"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
+                                <h4><a href="index.php?action=post&idbaiviet='.$record['id_baiViet'].'"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -201,7 +201,7 @@ $row_bv_title = mysqli_fetch_array($query_bv);
                                     echo $record['tenDanhMuc'];
                                 ?>
                                 </span>
-                                <h4><a href="details.html"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
+                                <h4><a href="index.php?action=post&idbaiviet='.$record['id_baiViet'].'"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -227,7 +227,7 @@ $row_bv_title = mysqli_fetch_array($query_bv);
                                     echo $record['tenDanhMuc'];
                                 ?>
                                 </span>
-                                <h4><a href="details.html"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
+                                <h4><a href="index.php?action=post&idbaiviet='.$record['id_baiViet'].'"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -253,7 +253,7 @@ $row_bv_title = mysqli_fetch_array($query_bv);
                                     echo $record['tenDanhMuc'];
                                 ?>
                                 </span>
-                                <h4><a href="details.html"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
+                                <h4><a href="index.php?action=post&idbaiviet='.$record['id_baiViet'].'"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -279,7 +279,7 @@ $row_bv_title = mysqli_fetch_array($query_bv);
                                     echo $record['tenDanhMuc'];
                                 ?>
                                 </span>
-                                <h4><a href="details.html"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
+                                <h4><a href="index.php?action=post&idbaiviet='.$record['id_baiViet'].'"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
                             </div>
                         </div>
                     </div>

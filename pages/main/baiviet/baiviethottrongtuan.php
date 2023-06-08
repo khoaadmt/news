@@ -6,7 +6,7 @@
         JOIN tbl_danhmuc AS dm ON b.id_danhmuc = dm.id_danhmuc
         GROUP BY b.id_baiviet, dm.tenDanhMuc
         ORDER BY COUNT(*) DESC
-        LIMIT 4";
+        LIMIT 6";
         $query_bv = mysqli_query($mysqli, $sql_BaiViet);
         //$row_bv_title = mysqli_fetch_array($query_bv);
     ?>
@@ -49,7 +49,8 @@
                                     </span>
                                 <h4><a href="#"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
                             </div>
-                        </div>                        
+                        </div>  
+                                              
                         <div class="weekly-single">
                             <div class="weekly-img">
                             <?php
@@ -125,6 +126,58 @@
                                         echo $record['tenDanhMuc'];
                                     ?>
                                 </span>
+                                <h4><a href="#"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
+                            </div>
+                        </div> 
+                        <div class="weekly-single">
+                            <div class="weekly-img">
+                                <?php
+                                    $bv = mysqli_data_seek($query_bv, 4);
+                                    $record = mysqli_fetch_array($query_bv);
+                                    if (isset($record['hinhAnh']) && !empty($record['hinhAnh'])) {
+                                        // echo "Image: admincp\modules\quanlybaiviet\uploads\\" . $record['hinhAnh'];
+                                        echo '<img src="admincp\modules\quanlybaiviet\uploads\\' . $record['hinhAnh'] . '" alt="" width="344" height="370">';
+                                     } else if (isset($record['video'])) {
+                                        // echo "Video: " . $record['video'];
+                                        echo '<iframe width="750" height="415" src="' . $record['video'] . '" frameborder="0" allowfullscreen></iframe>';
+                                     } else {
+                                        // echo "Default Image";
+                                        echo '<img src="admincp\modules\quanlybaiviet\uploads\download.jpg" alt="" width="344" height="370">';
+                                     }
+                                ?>
+                            </div>
+                            <div class="weekly-caption">
+                                <span class="color1">
+                                    <?php
+                                        echo $record['tenDanhMuc'];
+                                    ?>
+                                    </span>
+                                <h4><a href="#"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
+                            </div>
+                        </div> 
+                        <div class="weekly-single">
+                            <div class="weekly-img">
+                                <?php
+                                    $bv = mysqli_data_seek($query_bv, 5);
+                                    $record = mysqli_fetch_array($query_bv);
+                                    if (isset($record['hinhAnh']) && !empty($record['hinhAnh'])) {
+                                        // echo "Image: admincp\modules\quanlybaiviet\uploads\\" . $record['hinhAnh'];
+                                        echo '<img src="admincp\modules\quanlybaiviet\uploads\\' . $record['hinhAnh'] . '" alt="" width="344" height="370">';
+                                     } else if (isset($record['video'])) {
+                                        // echo "Video: " . $record['video'];
+                                        echo '<iframe width="750" height="415" src="' . $record['video'] . '" frameborder="0" allowfullscreen></iframe>';
+                                     } else {
+                                        // echo "Default Image";
+                                        echo '<img src="admincp\modules\quanlybaiviet\uploads\download.jpg" alt="" width="344" height="370">';
+                                     }
+                                ?>
+                            </div>
+                            <div class="weekly-caption">
+                                <span class="color1">
+                                    <?php
+                                        echo $record['tenDanhMuc'];
+                                    ?>
+                                    </span>
                                 <h4><a href="#"><?php echo $record['tieuDeBaiViet']; ?></a></h4>
                             </div>
                         </div> 
